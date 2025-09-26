@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:brevity/utils/logger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:brevity/controller/services/bookmark_services.dart';
 import 'bookmark_event.dart';
@@ -56,6 +57,6 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
 
   void _log(String message) {
     // Centralized logging format
-    print("BOOKMARK_BLOC:$message");
+    Log.d("BOOKMARK_BLOC:$message");
   }
 }

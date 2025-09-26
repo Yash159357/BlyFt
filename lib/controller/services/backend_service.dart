@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:brevity/utils/api_config.dart';
 import 'package:brevity/utils/logger.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
   // Update this URL to match your backend
-  static const String baseUrl = 'https://brevity-backend-khaki.vercel.app/api';
+  static const String baseUrl = ApiConfig.baseUrl;
   //static const String baseUrl = 'http://10.0.2.2:5000/api';
 
   // For Android emulator: http://10.0.2.2:5000/api
@@ -30,16 +31,10 @@ class ApiService {
 
   /// Initialize tokens from storage
   Future<void> initializeTokens() async {
-    final prefs = await SharedPreferences.getInstance();
-    _accessToken = prefs.getString(
-      'accessToken',
-    ); // Changed from 'access_token' to match AuthService
-    _refreshToken = prefs.getString('refresh_token');
-
     try {
       Log.d('BACKEND_SERVICE: Initializing tokens from storage');
       final prefs = await SharedPreferences.getInstance();
-      _accessToken = prefs.getString('accesstoken');
+      _accessToken = prefs.getString('accessToken'); 
       _refreshToken = prefs.getString('refresh_token');
 
       if (_accessToken != null) {
@@ -47,28 +42,29 @@ class ApiService {
       } else {
         Log.d('BACKEND_SERVICE: No access token found in storage');
       }
+
+      if (_refreshToken != null) {
+        Log.i('BACKEND_SERVICE: Refresh token loaded from storage');
+      } else {
+        Log.d('BACKEND_SERVICE: No refresh token found in storage');
+      }
     } catch (e) {
       Log.e('BACKEND_SERVICE: Error initializing tokens', e);
+      _accessToken = null;
+      _refreshToken = null;
       rethrow;
     }
   }
 
   /// Save tokens to storage
   Future<void> _saveTokens(String accessToken, String refreshToken) async {
-    _accessToken = accessToken;
-    _refreshToken = refreshToken;
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('accessToken', accessToken);
-    await prefs.setString('refresh_token', refreshToken);
-
     try {
       Log.d('BACKEND_SERVICE: Saving tokens to storage');
       _accessToken = accessToken;
       _refreshToken = refreshToken;
 
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('accesstoken', accessToken);
+      await prefs.setString('accessToken', accessToken); // Match AuthService key
       await prefs.setString('refresh_token', refreshToken);
       Log.i('BACKEND_SERVICE: Tokens saved successfully');
     } catch (e) {
@@ -79,21 +75,13 @@ class ApiService {
 
   /// Clear tokens from storage
   Future<void> _clearTokens() async {
-    _accessToken = null;
-    _refreshToken = null;
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(
-      'accessToken',
-    ); // Changed from 'access_token' to match AuthService
-    await prefs.remove('refresh_token');
     try {
       Log.d('BACKEND_SERVICE: Clearing tokens from storage');
       _accessToken = null;
       _refreshToken = null;
 
       final prefs = await SharedPreferences.getInstance();
-      await prefs.remove('accesstoken');
+      await prefs.remove('accessToken'); // Match AuthService key
       await prefs.remove('refresh_token');
       Log.i('BACKEND_SERVICE: Tokens cleared successfully');
     } catch (e) {
@@ -466,6 +454,83 @@ class ApiService {
       return response;
     } catch (e) {
       Log.e('BACKEND_SERVICE: Delete profile image error', e);
+      rethrow;
+    }
+  }
+
+  /// Share article
+  Future<ApiResponse> shareArticle(Map<String, dynamic> articleData) async {
+    try {
+      Log.i('BACKEND_SERVICE: Sharing article');
+      final uri = Uri.parse('$baseUrl/news/share');
+      final response = await _client
+          .post(
+            uri,
+            headers: _getHeaders(includeAuth: true),
+            body: json.encode(articleData),
+          )
+          .timeout(_timeout);
+
+      Log.i('BACKEND_SERVICE: Share request completed with status ${response.statusCode}');
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        Log.i('BACKEND_SERVICE: Article shared successfully');
+        return ApiResponse(
+          success: true,
+          message: 'Article shared successfully',
+          data: data,
+          statusCode: response.statusCode,
+        );
+      } else {
+        Log.w('BACKEND_SERVICE: Article share failed with status ${response.statusCode}');
+        return ApiResponse(
+          success: false,
+          message: 'Failed to share article',
+          statusCode: response.statusCode,
+        );
+      }
+    } catch (e) {
+      Log.e('BACKEND_SERVICE: Share article error', e);
+      return ApiResponse(
+        success: false,
+        message: _getErrorMessage(e),
+        statusCode: 0,
+      );
+    }
+  }
+
+  /// Get news by ID
+  Future<ApiResponse> getNewsById(String newsId) async {
+    try {
+      Log.i('BACKEND_SERVICE: Getting news by ID: $newsId');
+      final response = await _client
+          .get(
+            Uri.parse('$baseUrl/news/$newsId'),
+            headers: _getHeaders(includeAuth: true),
+          )
+          .timeout(_timeout);
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = json.decode(response.body);
+        Log.i('BACKEND_SERVICE: News retrieved successfully');
+        Log.d('BACKEND_SERVICE: News data: $data');
+        return ApiResponse(
+          success: true,
+          message: 'News retrieved successfully',
+          data: data,
+          statusCode: response.statusCode,
+        );
+      } else {
+        Log.w('BACKEND_SERVICE: Failed to get news - ${response.body}');
+        return ApiResponse(
+          success: false,
+          message: 'Failed to get news',
+          statusCode: response.statusCode,
+        );
+      }
+    } catch (e) {
+      Log.e('BACKEND_SERVICE: Get news by ID error', e);
       rethrow;
     }
   }

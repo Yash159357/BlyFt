@@ -71,7 +71,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         timestamp: DateTime.now(),
       );
 
-  Log.d('<CHAT_BLOC> New Conversation created: requestPreview="${event.message.length > 120 ? event.message.substring(0, 120) + '...' : event.message}"');
+  Log.d('<CHAT_BLOC> New Conversation created: requestPreview="${event.message.length > 120 ? '${event.message.substring(0, 120)}...' : event.message}"');
 
       // Add conversation to chat window
       final updatedConversations = [

@@ -656,10 +656,8 @@ class _SignupScreenState extends State<SignupScreen>
                               isValid: _nameValid,
                               errorText: _nameError,
                               validator: (v) {
-                                if (v == null || v.isEmpty)
-                                  return 'Name is required';
-                                if (v.length < 2)
-                                  return 'Name must be at least 2 characters';
+                                if (v == null || v.isEmpty) return 'Name is required';
+                                if (v.length < 2) return 'Name must be at least 2 characters';
                                 return null;
                               },
                             ),

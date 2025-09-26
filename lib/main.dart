@@ -1,4 +1,5 @@
 import 'package:brevity/views/inner_screens/about_screen.dart';
+import 'package:brevity/views/inner_screens/contact_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/services.dart';
@@ -24,14 +25,16 @@ import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:brevity/controller/cubit/user_profile/user_profile_cubit.dart';
-import 'package:brevity/views/inner_screens/contact_screen.dart';
+import 'package:brevity/views/inner_screens/shared_news_screen.dart';
 import 'package:brevity/controller/services/auth_service.dart';
+import 'package:brevity/controller/services/backend_service.dart' as backend;
 import 'package:brevity/controller/bloc/news_scroll_bloc/news_scroll_bloc.dart';
 import 'package:brevity/controller/cubit/theme/theme_state.dart';
 import 'package:brevity/models/theme_model.dart';
 // ADD THESE IMPORTS
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:brevity/controller/services/notification_service.dart';
+import 'package:app_links/app_links.dart';
 // LOGGER IMPORT
 import 'package:brevity/utils/logger.dart';
 
@@ -326,6 +329,15 @@ final _routes = GoRouter(
         );
       },
     ),
+    GoRoute(
+      path: '/share',
+      name: 'share',
+      builder: (context, state) {
+        final id = state.uri.queryParameters['id'];
+        Log.d("[Main][RouteBuilder]: Building shared news screen for id: $id");
+        return SharedNewsScreen(newsId: id!);
+      },
+    ),
   ],
   // Add redirect logic to handle authentication state
   redirect: (context, state) {
@@ -392,6 +404,10 @@ void main() async {
     await AuthService().initializeAuth();
     Log.i("[Main][main]: AuthService initialization completed");
 
+    Log.d("[Main][main]: Initializing ApiService");
+    await backend.ApiService().initializeTokens();
+    Log.i("[Main][main]: ApiService initialization completed");
+
     Log.d("[Main][main]: Initializing notification service");
     final notificationService = NotificationService();
     await notificationService.initialize();
@@ -414,6 +430,22 @@ void main() async {
     Log.d("[Main][main]: Device orientations set to portrait only");
 
     Log.i("[Main][main]: All initialization completed successfully, starting app");
+    Log.d("[Main][main]: Setting up deep linking");
+
+    // Initialize deep linking
+    final appLinks = AppLinks();
+    String? initialLink;
+
+    // Handle initial link
+    try {
+      initialLink = await appLinks.getInitialLinkString();
+      if (initialLink != null) {
+        Log.d("[Main][DeepLink]: Initial link received: $initialLink");
+      }
+    } catch (e) {
+      Log.e("[Main][DeepLink]: Error getting initial link", e);
+    }
+
     Log.d("[Main][main]: Setting up widget tree with providers and blocs");
 
     runApp(
@@ -441,7 +473,11 @@ void main() async {
               return ThemeCubit()..initializeTheme();
             }),
           ],
-          child: const MyApp(),
+          child: DeepLinkHandler(
+            appLinks: appLinks,
+            initialLink: initialLink,
+            child: const MyApp(),
+          ),
         ),
       ),
     );
@@ -470,10 +506,84 @@ class MyApp extends StatelessWidget {
           title: 'Brevity',
           debugShowCheckedModeBanner: false,
           routerConfig: _routes,
-          // UPDATED: Apply the dynamic theme from the ThemeCubit state
           theme: createAppTheme(state.currentTheme),
         );
       },
     );
+  }
+}
+
+class DeepLinkHandler extends StatefulWidget {
+  final AppLinks appLinks;
+  final String? initialLink;
+  final Widget child;
+
+  const DeepLinkHandler({
+    super.key,
+    required this.appLinks,
+    this.initialLink,
+    required this.child,
+  });
+
+  @override
+  State<DeepLinkHandler> createState() => _DeepLinkHandlerState();
+}
+
+class _DeepLinkHandlerState extends State<DeepLinkHandler> {
+  @override
+  void initState() {
+    super.initState();
+    _handleInitialLink();
+    _listenForLinks();
+  }
+
+  void _handleInitialLink() {
+    if (widget.initialLink != null) {
+      _handleDeepLink(widget.initialLink!);
+    }
+  }
+
+  void _listenForLinks() {
+    widget.appLinks.uriLinkStream.listen((uri) {
+      Log.d("[DeepLink]: Received link: $uri");
+      _handleDeepLink(uri.toString());
+    }, onError: (err) {
+      Log.e("[DeepLink]: Error receiving link", err);
+    });
+  }
+
+  void _handleDeepLink(String link) {
+    try {
+      final uri = Uri.parse(link);
+      Log.d("[DeepLink]: Parsed URI: $uri");
+
+      if (uri.scheme == 'brevity' && uri.host == 'share') {
+        final id = uri.queryParameters['id'];
+        if (id != null && id.isNotEmpty) {
+          Log.d("[DeepLink]: Navigating to shared news with id: $id");
+          // Use a post-frame callback to ensure the widget tree is built
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              try {
+                _routes.go('/share?id=$id');
+              } catch (e, st) {
+                Log.e('[DeepLink]: Failed to navigate via _routes.go', e, st);
+              }
+            }
+          });
+        } else {
+          Log.w("[DeepLink]: No id parameter found in share link");
+        }
+      } else {
+        Log.d("[DeepLink]: Ignoring non-share link: $link");
+      }
+    } catch (e) {
+      Log.e("[DeepLink]: Error handling deep link: $link", e);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.child;
   }
 }
