@@ -390,6 +390,7 @@ All API responses follow this standard format:
 | `POST` | `/resend-verification` | Resend email verification | ❌ |
 | `GET` | `/verify-email` | Verify user email address | ❌ |
 | `POST` | `/login` | User login | ❌ |
+| `POST` | `/google` | Google OAuth authentication | ❌ |
 | `POST` | `/forgot-password` | Send password reset email | ❌ |
 | `POST` | `/reset-password` | Reset password with token | ❌ |
 | `POST` | `/logout` | User logout | ✅ |
@@ -400,12 +401,39 @@ All API responses follow this standard format:
 |--------|----------|-------------|---------------|
 | `PUT` | `/profile` | Update user profile with image | ✅ |
 | `DELETE` | `/profile/image` | Delete profile image | ✅ |
+| `DELETE` | `/deleteAccount` | Delete user account | ✅ |
 
-#### 🔖 Bookmarks (`/api/bookmarks`)
+#### � News (`/api/news`)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| `GET` | `/trending` | Get trending news articles | ❌ |
+| `GET` | `/general` | Get general news articles | ❌ |
+| `GET` | `/category/:category` | Get news by category | ❌ |
+| `GET` | `/politics` | Get politics news | ❌ |
+| `GET` | `/search` | Search news articles | ❌ |
+| `GET` | `/:newsId` | Get specific news article by ID | ✅ |
+| `POST` | `/share` | Get shareable link for news | ✅ |
+
+#### 👍 Reactions (`/api/reactions`)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| `POST` | `/like` | Like a news article | ✅ |
+| `POST` | `/dislike` | Dislike a news article | ✅ |
+| `GET` | `/reacted-news` | Get user's reacted news | ✅ |
+| `DELETE` | `/like/:articleId` | Remove like from article | ✅ |
+| `DELETE` | `/dislike/:articleId` | Remove dislike from article | ✅ |
+
+#### �🔖 Bookmarks (`/api/bookmarks`)
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
 | `GET` | `/` | Get user's bookmarks | ✅ |
 | `POST` | `/` | Toggle bookmark (add/remove) | ✅ |
+
+#### 🤖 AI/Gemini (`/api/gemini`)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| `POST` | `/generate` | Generate content using Gemini AI | ✅ |
+| `GET` | `/health` | Gemini service health check | ❌ |
 
 #### ⚕️ System
 | Method | Endpoint | Description | Auth Required |
@@ -431,10 +459,51 @@ curl -X POST http://localhost:5001/api/auth/login \
   -d '{"email":"user@example.com","password":"securePassword123"}'
 ```
 
+#### Google OAuth Login
+```bash
+curl -X POST http://localhost:5001/api/auth/google \
+  -H "Content-Type: application/json" \
+  -d '{"idToken":"google_id_token_here"}'
+```
+
+#### Get Trending News
+```bash
+curl -X GET http://localhost:5001/api/news/trending
+```
+
+#### Search News
+```bash
+curl -X GET "http://localhost:5001/api/news/search?q=technology&page=1&limit=10"
+```
+
 #### Get Bookmarks
 ```bash
 curl -X GET http://localhost:5001/api/bookmarks \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
+```
+
+#### Like a News Article
+```bash
+curl -X POST http://localhost:5001/api/reactions/like \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"articleId":"article_id_here","articleUrl":"https://example.com/article"}'
+```
+
+#### Generate AI Content
+```bash
+curl -X POST http://localhost:5001/api/gemini/generate \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt":"Summarize this article","maxTokens":500}'
+```
+
+#### Share News Article
+```bash
+curl -X POST http://localhost:5001/api/news/share \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"articleId":"article_id_here","title":"Article Title","url":"https://example.com"}'
 ```
 
 ### 🔄 Error Handling
