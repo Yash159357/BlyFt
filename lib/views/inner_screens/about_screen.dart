@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui';
 import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
 import 'package:brevity/models/theme_model.dart';
+import '../../l10n/app_localizations.dart';
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({super.key});
@@ -150,7 +151,7 @@ class _AboutUsScreenState extends State<AboutUsScreen>
             ),
             const Gap(8),
             Text(
-              'About Unity',
+              AppLocalizations.of(context)!.aboutUnity,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ],
@@ -184,7 +185,7 @@ class _AboutUsScreenState extends State<AboutUsScreen>
                 ),
                 const Gap(12),
                 Text(
-                  'Unity News',
+                  AppLocalizations.of(context)!.unityNews,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -216,18 +217,18 @@ class _AboutUsScreenState extends State<AboutUsScreen>
     final features = [
       {
         'icon': Icons.auto_awesome,
-        'title': 'AI Chat Assistant',
-        'description': 'Discuss articles with our intelligent chatbot',
+        'title': AppLocalizations.of(context)!.aiChatAssistant,
+        'description': AppLocalizations.of(context)!.discussArticlesChatbot,
       },
       {
         'icon': Icons.article_outlined,
-        'title': 'Curated Content',
-        'description': 'News from reliable sources',
+        'title': AppLocalizations.of(context)!.curatedContent,
+        'description': AppLocalizations.of(context)!.newsReliableSources,
       },
       {
         'icon': Icons.speed,
-        'title': 'Real-time Updates',
-        'description': 'Stay updated with the latest news',
+        'title': AppLocalizations.of(context)!.realtimeUpdates,
+        'description': AppLocalizations.of(context)!.stayUpdatedLatestNews,
       },
     ];
 
@@ -255,7 +256,7 @@ class _AboutUsScreenState extends State<AboutUsScreen>
                 ),
                 const Gap(12),
                 Text(
-                  'Features',
+                  AppLocalizations.of(context)!.features,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -339,7 +340,7 @@ class _AboutUsScreenState extends State<AboutUsScreen>
                 ),
                 const Gap(12),
                 Text(
-                  'Developers',
+                  AppLocalizations.of(context)!.developers,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],

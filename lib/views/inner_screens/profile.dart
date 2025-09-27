@@ -10,6 +10,7 @@ import 'package:brevity/models/theme_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:brevity/l10n/app_localizations.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -68,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     if (changedFields.isEmpty) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('No changes to save')));
+      ).showSnackBar(SnackBar(content: Text(AppLocalizations.of(context)!.noChangesToSave)));
       return;
     }
 
@@ -85,13 +86,13 @@ class _ProfileScreenState extends State<ProfileScreen>
           });
 
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Profile updated successfully')),
+            SnackBar(content: Text(AppLocalizations.of(context)!.profileUpdatedSuccessfully)),
           );
         })
         .catchError((error) {
           if (!mounted) return;
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error updating profile: $error')),
+            SnackBar(content: Text('${AppLocalizations.of(context)!.error} updating profile: $error')),
           );
         });
   }
@@ -122,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         compressQuality: 85,
         uiSettings: [
           AndroidUiSettings(
-            toolbarTitle: 'Crop Profile Picture',
+            toolbarTitle: AppLocalizations.of(context)!.editProfile,
             toolbarColor: currentTheme.primaryColor,
             toolbarWidgetColor: theme.colorScheme.onPrimary,
             initAspectRatio: CropAspectRatioPreset.square,
@@ -131,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             cropStyle: CropStyle.circle,
           ),
           IOSUiSettings(
-            title: 'Crop Profile Picture',
+            title: AppLocalizations.of(context)!.editProfile,
             aspectRatioLockEnabled: true,
             aspectRatioPickerButtonHidden: true,
             resetAspectRatioEnabled: false,
@@ -177,7 +178,7 @@ class _ProfileScreenState extends State<ProfileScreen>
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('Failed to pick image: $e')));
+      ).showSnackBar(SnackBar(content: Text('${AppLocalizations.of(context)!.failedToPickImage}: $e')));
     }
   }
 
@@ -206,7 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen>
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('Failed to take photo: $e')));
+      ).showSnackBar(SnackBar(content: Text('${AppLocalizations.of(context)!.failedToTakePhoto}: $e')));
     }
   }
 
@@ -222,7 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 children: [
                   ListTile(
                     leading: const Icon(Icons.camera_alt),
-                    title: const Text('Take Photo'),
+                    title: Text(AppLocalizations.of(context)!.takePhoto),
                     onTap: () {
                       Navigator.pop(context);
                       _pickImageFromCamera();
@@ -230,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ),
                   ListTile(
                     leading: const Icon(Icons.photo_library),
-                    title: const Text('Choose from Gallery'),
+                    title: Text(AppLocalizations.of(context)!.chooseFromGallery),
                     onTap: () {
                       Navigator.pop(context);
                       _pickImageFromGallery();
@@ -239,7 +240,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   if (_selectedImage != null || _hasProfileImage(state, user))
                     ListTile(
                       leading: const Icon(Icons.delete),
-                      title: const Text('Remove Photo'),
+                      title: Text(AppLocalizations.of(context)!.removePhoto),
                       onTap: () {
                         Navigator.pop(context);
                         _removeProfilePhoto(); // Use the new method
@@ -264,16 +265,16 @@ class _ProfileScreenState extends State<ProfileScreen>
       final userProfileCubit = context.read<UserProfileCubit>();
       await userProfileCubit.removeProfileImage();
 
-      if (mounted) {
+        if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Profile photo removed successfully')),
+          SnackBar(content: Text(AppLocalizations.of(context)!.profilePhotoRemovedSuccessfully)),
         );
       }
     } catch (error) {
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('Error removing photo: $error')));
+        ).showSnackBar(SnackBar(content: Text('${AppLocalizations.of(context)!.errorRemovingPhoto}: $error')));
       }
     }
   }
@@ -300,7 +301,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         if (state.status == UserProfileStatus.error) {
           return Scaffold(
             backgroundColor: theme.colorScheme.surface,
-            body: Center(child: Text('Error: ${state.errorMessage}')),
+            body: Center(child: Text('${AppLocalizations.of(context)!.error}: ${state.errorMessage}')),
           );
         }
 
@@ -319,7 +320,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 elevation: 0,
                 flexibleSpace: FlexibleSpaceBar(
                   background: ParticlesHeader(
-                    title: "Profile Settings",
+                    title: AppLocalizations.of(context)!.profileSettings,
                     themeColor: currentTheme.primaryColor,
                     particleAnimation: _particleAnimationController,
                   ),
@@ -424,7 +425,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         const SizedBox(height: 30),
                         _buildProfileFieldCard(
                           icon: Icons.person,
-                          title: 'Full Name',
+                          title: AppLocalizations.of(context)!.fullName,
                           controller: _nameController,
                           currentTheme: currentTheme,
                           enabled: _isNameEditing,
@@ -436,7 +437,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ),
                         _buildProfileFieldCard(
                           icon: Icons.email,
-                          title: 'Email Address',
+                          title: AppLocalizations.of(context)!.emailAddress,
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           enabled: false,
@@ -444,28 +445,28 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ),
                         _buildProfileOption(
                           icon: Icons.verified_user,
-                          title: 'Email Verified',
-                          subtitle: user?.emailVerified == true ? 'Yes' : 'No',
+                          title: AppLocalizations.of(context)!.emailVerified,
+                          subtitle: user?.emailVerified == true ? AppLocalizations.of(context)!.yes : AppLocalizations.of(context)!.no,
                           onTap: () {},
                           currentTheme: currentTheme,
                         ),
                         _buildProfileOption(
                           icon: Icons.calendar_today,
-                          title: 'Account Created',
+                          title: AppLocalizations.of(context)!.accountCreated,
                           subtitle:
                               user?.createdAt != null
                                   ? '${user!.createdAt!.day}/${user.createdAt!.month}/${user.createdAt!.year}'
-                                  : 'Unknown',
+                                  : AppLocalizations.of(context)!.unknown,
                           onTap: () {},
                           currentTheme: currentTheme,
                         ),
                         _buildProfileOption(
                           icon: Icons.update,
-                          title: 'Last Updated',
+                          title: AppLocalizations.of(context)!.lastUpdated,
                           subtitle:
                               user?.updatedAt != null
                                   ? '${user!.updatedAt!.day}/${user.updatedAt!.month}/${user.updatedAt!.year}'
-                                  : 'Never',
+                                  : AppLocalizations.of(context)!.never,
                           onTap: () {},
                           currentTheme: currentTheme,
                         ),
@@ -493,8 +494,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                          child: const Text(
-                            'Save Changes',
+                          child: Text(
+                            AppLocalizations.of(context)!.saveChanges,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -611,7 +612,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       )
                       : Text(
                         controller.text.isEmpty
-                            ? 'Loading...'
+                            ? AppLocalizations.of(context)!.loading
                             : controller.text,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.colorScheme.onSurface.withAlpha(
@@ -628,7 +629,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   if (enabled) {
                     if (controller.text.trim().isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Name cannot be blank')),
+                        SnackBar(content: Text(AppLocalizations.of(context)!.nameCannotBeBlank)),
                       );
                       return;
                     }

@@ -53,7 +53,6 @@ class ArticleListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           child: Row(
             children: [
-              // Image section
               SizedBox(
                 width: 110,
                 height: 120,

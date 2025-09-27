@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'dart:ui';
 import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
 import 'package:brevity/models/theme_model.dart';
+import '../../l10n/app_localizations.dart';
 
 class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({super.key});
@@ -149,7 +150,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             ),
             const Gap(8),
             Text(
-              'Contact Us',
+              AppLocalizations.of(context)!.contactUs,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ],
@@ -183,7 +184,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
                 ),
                 const Gap(12),
                 Text(
-                  'Get in Touch',
+                  AppLocalizations.of(context)!.getInTouch,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
@@ -278,17 +279,17 @@ class _ContactUsScreenState extends State<ContactUsScreen>
           const Gap(16),
           _buildContactItem(
             icon: Icons.email_outlined,
-            label: 'Email',
+            label: AppLocalizations.of(context)!.email,
             value: email,
-            onTap: () => _copyToClipboard(email, 'Email'),
+            onTap: () => _copyToClipboard(email, AppLocalizations.of(context)!.email),
             theme: theme,
           ),
           const Gap(8),
           _buildContactItem(
             icon: Icons.phone_outlined,
-            label: 'Phone',
+            label: AppLocalizations.of(context)!.phone,
             value: phone,
-            onTap: () => _copyToClipboard(phone, 'Phone number'),
+            onTap: () => _copyToClipboard(phone, AppLocalizations.of(context)!.phoneNumber),
             theme: theme,
           ),
         ],

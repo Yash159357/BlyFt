@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
 import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_event.dart';
 import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_state.dart';

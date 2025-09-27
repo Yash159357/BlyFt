@@ -9,6 +9,7 @@ import 'package:brevity/models/theme_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import '../../l10n/app_localizations.dart';
 
 class ChatScreen extends StatefulWidget {
   final Article article;
@@ -132,7 +133,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                   color: theme.colorScheme.surface,
                   borderRadius: BorderRadius.circular(24),
                   border: Border.all(
-                    color: theme.dividerColor.withOpacity(0.2),
+                    color: theme.dividerColor.withValues(alpha: 0.2),
                   ),
                 ),
                 child: SingleChildScrollView(
@@ -141,7 +142,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Report Content',
+                        AppLocalizations.of(context)!.reportContent,
                         style: theme.textTheme.titleLarge?.copyWith(
                           color: theme.colorScheme.onSurface,
                           fontWeight: FontWeight.bold,
@@ -151,7 +152,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                       Text(
                         'Please select the reason for reporting:',
                         style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.7),
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -162,7 +163,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                       ) {
                         setState(() {
                           selectedOption = option;
-                          showCustomField = option == 'Other';
+                          showCustomField = option == AppLocalizations.of(context)!.other;
                           if (!showCustomField) {
                             customReasonController.clear();
                             customError = '';
@@ -210,10 +211,10 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                               Navigator.of(context).pop();
                             },
                             child: Text(
-                              'Cancel',
+                              AppLocalizations.of(context)!.cancel,
                               style: TextStyle(
-                                color: theme.colorScheme.onSurface.withOpacity(
-                                  0.7,
+                                color: theme.colorScheme.onSurface.withValues(
+                                  alpha: 0.7,
                                 ),
                               ),
                             ),
@@ -239,7 +240,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                               ),
                             ),
                             child: Text(
-                              'Submit Report',
+                              AppLocalizations.of(context)!.submitReport,
                               style: TextStyle(
                                 color: theme.colorScheme.onPrimary,
                               ),
@@ -272,10 +273,10 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   ) {
     final options = [
       'Bullying/Harassment',
-      'Inaccurate Information',
-      'Offensive Content',
-      'Spam',
-      'Other',
+      AppLocalizations.of(context)!.inaccurateInformation,
+      AppLocalizations.of(context)!.offensiveContent,
+      AppLocalizations.of(context)!.spam,
+      AppLocalizations.of(context)!.other,
     ];
 
     return options.map((option) {
@@ -389,7 +390,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                               ],
                             ).createShader(bounds),
                         child: Text(
-                          'NewsAI Assistant',
+                          AppLocalizations.of(context)!.newsAiAssistant,
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
@@ -397,7 +398,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                         ),
                       ),
                       Text(
-                        'Powered by Gemini',
+                        AppLocalizations.of(context)!.poweredByGemini,
                         style: TextStyle(
                           color: appTheme.primaryColor.withAlpha(
                             (0.8 * 255).toInt(),
@@ -518,7 +519,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Article Context',
+                        AppLocalizations.of(context)!.articleContext,
                         style: TextStyle(
                           color: appTheme.primaryColor,
                           fontSize: 14,
@@ -660,9 +661,9 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                     ),
                   ),
                   const Gap(20),
-                  const Text(
-                    'Something went wrong',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.somethingWentWrong,
+                    style: const TextStyle(
                       color: Colors.red,
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -906,8 +907,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                             icon: Icon(
                               Icons.more_vert,
                               size: 18,
-                              color: theme.colorScheme.onSurface.withOpacity(
-                                0.6,
+                              color: theme.colorScheme.onSurface.withValues(
+                                alpha: 0.6,
                               ),
                             ),
                             itemBuilder:
@@ -923,7 +924,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                                         ),
                                         const SizedBox(width: 8),
                                         Text(
-                                          'Report',
+                                          AppLocalizations.of(context)!.report,
                                           style: TextStyle(
                                             color: theme.colorScheme.onSurface,
                                           ),
@@ -933,7 +934,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                                   ),
                                 ],
                             onSelected: (value) {
-                              if (value == 'report') {
+                              if (value == AppLocalizations.of(context)!.report) {
                                 _showReportDialog(messageIndex);
                               }
                             },

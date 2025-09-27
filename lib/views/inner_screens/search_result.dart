@@ -6,8 +6,9 @@ import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
 import 'package:brevity/controller/services/news_services.dart';
 import 'package:brevity/models/article_model.dart';
 import 'package:brevity/views/common_widgets/common_appbar.dart';
-import 'package:brevity/views/common_widgets/List_of_article.dart';
+import 'package:brevity/views/common_widgets/list_of_article.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../l10n/app_localizations.dart';
 import 'package:brevity/models/theme_model.dart';
 
 class SearchResultsScreen extends StatefulWidget {
@@ -115,11 +116,11 @@ class _SearchResultsScreenState extends State<SearchResultsScreen>
           SnackBar(
             backgroundColor: Theme.of(context).colorScheme.error,
             content: Text(
-              'Failed to open article: $e',
+              '${AppLocalizations.of(context)!.failedToOpenArticle}: $e',
               style: TextStyle(color: Theme.of(context).colorScheme.onError),
             ),
             action: SnackBarAction(
-              label: 'DISMISS',
+              label: AppLocalizations.of(context)!.dismiss,
               textColor: currentTheme.primaryColor,
               onPressed: () {},
             ),
@@ -158,7 +159,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen>
               ),
               const SizedBox(height: 16),
               Text(
-                'Error: ${snapshot.error}',
+                '${AppLocalizations.of(context)!.error}: ${snapshot.error}',
                 style: TextStyle(
                   color: theme.colorScheme.error,
                   fontSize: 16,
@@ -183,12 +184,12 @@ class _SearchResultsScreenState extends State<SearchResultsScreen>
                     _searchResults = _newsService.searchNews(widget.query);
                   });
                 },
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.refresh, size: 18),
-                    SizedBox(width: 8),
-                    Text('Retry Search'),
+                    const Icon(Icons.refresh, size: 18),
+                    const SizedBox(width: 8),
+                    Text(AppLocalizations.of(context)!.retrySearch),
                   ],
                 ),
               ),
@@ -227,7 +228,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen>
               ),
               const SizedBox(height: 24),
               Text(
-                'No results found for "${widget.query}"',
+                AppLocalizations.of(context)!.noResultsFoundFor(widget.query),
                 style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
@@ -235,7 +236,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen>
               ),
               const SizedBox(height: 8),
               Text(
-                'Try a different search term',
+                AppLocalizations.of(context)!.tryDifferentSearch,
                 style: theme.textTheme.titleMedium?.copyWith(
                   color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).toInt()),
                 ),
@@ -256,14 +257,14 @@ class _SearchResultsScreenState extends State<SearchResultsScreen>
                   shadowColor: currentTheme.primaryColor.withAlpha((0.5 * 255).toInt()),
                 ),
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.search),
-                    SizedBox(width: 8),
+                    const Icon(Icons.search),
+                    const SizedBox(width: 8),
                     Text(
-                      'Search Again',
-                      style: TextStyle(
+                      AppLocalizations.of(context)!.searchAgain,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),

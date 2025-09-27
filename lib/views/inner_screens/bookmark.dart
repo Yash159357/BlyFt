@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_event.dart';
-import 'package:brevity/views/common_widgets/List_of_article.dart';
+import 'package:brevity/views/common_widgets/list_of_article.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_bloc.dart';
 import 'package:brevity/controller/bloc/bookmark_bloc/bookmark_state.dart';
@@ -9,6 +9,7 @@ import 'package:brevity/controller/cubit/theme/theme_cubit.dart';
 import 'package:brevity/models/article_model.dart';
 import 'package:brevity/views/common_widgets/common_appbar.dart';
 import 'package:brevity/models/theme_model.dart';
+import '../../l10n/app_localizations.dart';
 
 class BookmarkScreen extends StatefulWidget {
   const BookmarkScreen({super.key});
@@ -157,7 +158,7 @@ class _BookmarkScreenState extends State<BookmarkScreen>
             ),
             const SizedBox(height: 32),
             Text(
-              'No Bookmarks Yet',
+              AppLocalizations.of(context)!.noBookmarksYet,
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.5,
@@ -165,7 +166,7 @@ class _BookmarkScreenState extends State<BookmarkScreen>
             ),
             const SizedBox(height: 12),
             Text(
-              'Articles you save will appear here',
+              AppLocalizations.of(context)!.articlesSavedWillAppearHere,
               textAlign: TextAlign.center,
               style: theme.textTheme.titleMedium?.copyWith(
                 color: theme.colorScheme.onSurface.withAlpha((0.7 * 255).toInt()),
@@ -188,14 +189,14 @@ class _BookmarkScreenState extends State<BookmarkScreen>
                 shadowColor: currentTheme.primaryColor.withAlpha((0.5 * 255).toInt()),
               ),
               onPressed: () => Navigator.of(context).pop(),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.explore_outlined),
-                  SizedBox(width: 8),
+                  const Icon(Icons.explore_outlined),
+                  const SizedBox(width: 8),
                   Text(
-                    'Discover News',
-                    style: TextStyle(
+                    AppLocalizations.of(context)!.discoverNews,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.5,

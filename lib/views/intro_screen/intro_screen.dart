@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../l10n/app_localizations.dart';
 
 import '../../controller/cubit/theme/theme_cubit.dart';
 import '../../controller/services/tutorial_service.dart';
@@ -42,39 +43,39 @@ class _IntroductionScreenState extends State<IntroductionScreen>
   late Animation<double> _floatAnim;
   late Animation<double> _pulseAnim;
 
-  final List<IntroPage> _pages = [
-    IntroPage(
-      title: 'Welcome to\nBrevity',
-      subtitle: 'Your Smart News Companion',
-      description:
-          'Skip the long reads, not the knowledge. Get straight to the point with intelligent, 60-word summaries of the world\'s top stories.',
-      icon: Icons.newspaper_outlined,
-    ),
+  List<IntroPage> pages(BuildContext context) => [
+        IntroPage(
+          title: AppLocalizations.of(context)!.welcomeToBrevity,
+          subtitle: AppLocalizations.of(context)!.yourSmartNewsCompanion,
+          description:
+              'Skip the long reads, not the knowledge. Get straight to the point with intelligent, 60-word summaries of the world\'s top stories.',
+          icon: Icons.newspaper_outlined,
+        ),
 
-    IntroPage(
-      title: 'A Feed\nJust For You',
-      subtitle: 'Tailored to Your Tastes',
-      description:
-          'Like and dislike stories to shape your personal news feed. The more you engage, the smarter it gets.',
-      icon: Icons.tune_outlined,
-    ),
+        IntroPage(
+          title: AppLocalizations.of(context)!.aFeedJustForYou,
+          subtitle: AppLocalizations.of(context)!.tailoredToYourTastes,
+          description:
+              'Like and dislike stories to shape your personal news feed. The more you engage, the smarter it gets.',
+          icon: Icons.tune_outlined,
+        ),
 
-    IntroPage(
-      title: 'AI-Powered\nInsights',
-      subtitle: 'Go Beyond the Headlines',
-      description:
-          'Have questions? Ask our AI assistant about any news story for detailed, context-aware answers.',
-      icon: Icons.psychology_outlined,
-    ),
+        IntroPage(
+          title: AppLocalizations.of(context)!.aiPoweredInsights,
+          subtitle: AppLocalizations.of(context)!.goBeyondHeadlines,
+          description:
+              'Have questions? Ask our AI assistant about any news story for detailed, context-aware answers.',
+          icon: Icons.psychology_outlined,
+        ),
 
-    IntroPage(
-      title: 'Personalize\nYour Experience',
-      subtitle: 'Themes & Customization',
-      description:
-          'Choose your preferred theme and customize your reading experience with multiple color options.',
-      icon: Icons.palette_outlined,
-    ),
-  ];
+        IntroPage(
+          title: AppLocalizations.of(context)!.personalizeYourExperience,
+          subtitle: AppLocalizations.of(context)!.themesAndCustomization,
+          description:
+              'Choose your preferred theme and customize your reading experience with multiple color options.',
+          icon: Icons.palette_outlined,
+        ),
+      ];
 
   @override
   void initState() {
@@ -304,8 +305,8 @@ class _IntroductionScreenState extends State<IntroductionScreen>
           child: PageView.builder(
             controller: _pageController,
             onPageChanged: _onPageChanged,
-            itemCount: _pages.length,
-            itemBuilder: (context, index) => _buildPage(_pages[index], index),
+            itemCount: pages(context).length,
+            itemBuilder: (context, index) => _buildPage(pages(context)[index], index),
           ),
         ),
         _buildBottomPanel(),
@@ -388,8 +389,8 @@ class _IntroductionScreenState extends State<IntroductionScreen>
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.w800,
-                        color: Colors.white.withOpacity(
-                          opacity > 0.8 ? 1.0 : 0.7,
+                        color: Colors.white.withValues(
+                          alpha: opacity > 0.8 ? 1.0 : 0.7,
                         ),
                         letterSpacing: -0.5,
                       ),
@@ -404,7 +405,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: primaryB.withOpacity(opacity > 0.8 ? 1.0 : 0.6),
+                        color: primaryB.withValues(alpha: opacity > 0.8 ? 1.0 : 0.6),
                       ),
                       child: Text(page.subtitle, textAlign: TextAlign.center),
                     ),
@@ -437,7 +438,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
   }
 
   Widget _buildBottomPanel() {
-    final isLastPage = _currentPage == _pages.length - 1;
+  final isLastPage = _currentPage == pages(context).length - 1;
 
     return Container(
       decoration: const BoxDecoration(
@@ -457,7 +458,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
           // Page indicators
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(_pages.length, (index) {
+            children: List.generate(pages(context).length, (index) {
               return AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -516,7 +517,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  isLastPage ? 'CUSTOMIZE THEME' : 'NEXT',
+                  isLastPage ? AppLocalizations.of(context)!.customizeTheme.toUpperCase() : AppLocalizations.of(context)!.next.toUpperCase(),
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
@@ -590,7 +591,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Choose your preferred theme and mode',
+                  AppLocalizations.of(context)!.chooseThemeAndMode,
                   style: TextStyle(
                     fontSize: 14,
                     color: mutedText,
@@ -607,7 +608,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
 
                 // Theme Colors
                 Text(
-                  'THEME COLOR',
+                  AppLocalizations.of(context)!.themeColor,
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -640,7 +641,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'MODE',
+          AppLocalizations.of(context)!.mode,
           style: TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w600,
@@ -659,7 +660,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
             children: [
               Expanded(
                 child: _buildModeOption(
-                  'Dark Mode',
+                  AppLocalizations.of(context)!.darkMode,
                   Icons.dark_mode_outlined,
                   true,
                   _isDarkMode,
@@ -667,7 +668,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
               ),
               Expanded(
                 child: _buildModeOption(
-                  'Light Mode',
+                  AppLocalizations.of(context)!.lightMode,
                   Icons.light_mode_outlined,
                   false,
                   !_isDarkMode,
@@ -782,7 +783,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
           Row(
             children: [
               Text(
-                'Preview',
+                AppLocalizations.of(context)!.preview,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -829,7 +830,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Sample News Article',
+                        AppLocalizations.of(context)!.sampleNewsArticle,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: onSurfaceColor,
@@ -838,7 +839,7 @@ class _IntroductionScreenState extends State<IntroductionScreen>
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'This is how your news cards will look',
+                        AppLocalizations.of(context)!.newsCardPreview,
                         style: TextStyle(
                           color: onSurfaceColor.withAlpha((0.7 * 255).toInt()),
                           fontSize: 12,
@@ -887,8 +888,8 @@ class _IntroductionScreenState extends State<IntroductionScreen>
                 ],
               ),
               alignment: Alignment.center,
-              child: const Text(
-                'GET STARTED',
+              child: Text(
+                AppLocalizations.of(context)!.getStarted,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,

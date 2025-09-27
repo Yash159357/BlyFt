@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:brevity/l10n/app_localizations.dart';
 
 class MessageBubble extends StatelessWidget {
   final String message;
@@ -55,7 +56,7 @@ class MessageBubble extends StatelessWidget {
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Message copied to clipboard'),
+        content: Text(AppLocalizations.of(context)!.messageCopiedToClipboard),
         duration: const Duration(seconds: 2),
         backgroundColor: const Color.fromRGBO(68, 138, 255, 1),
       ),

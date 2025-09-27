@@ -34,6 +34,11 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:brevity/controller/services/notification_service.dart';
 // LOGGER IMPORT
 import 'package:brevity/utils/logger.dart';
+// LOCALIZATION IMPORTS
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:brevity/l10n/app_localizations.dart';
+import 'package:brevity/controller/cubit/locale/locale_cubit.dart';
+import 'package:brevity/controller/cubit/locale/locale_state.dart';
 
 // Create a router with auth state handling
 final _routes = GoRouter(
@@ -440,6 +445,11 @@ void main() async {
               Log.d("[Main][BlocProvider]: Creating ThemeCubit and initializing theme");
               return ThemeCubit()..initializeTheme();
             }),
+            // Locale cubit for language selection
+            BlocProvider(create: (context) {
+              Log.d("[Main][BlocProvider]: Creating LocaleCubit");
+              return LocaleCubit();
+            }),
           ],
           child: const MyApp(),
         ),
@@ -462,16 +472,43 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Log.d("[Main][MyApp]: Building app widget tree");
 
-    // UPDATED: Wrap with BlocBuilder to react to theme changes
+    // UPDATED: Wrap with BlocBuilder to react to theme changes and listen to LocaleCubit
     return BlocBuilder<ThemeCubit, ThemeState>(
-      builder: (context, state) {
-        Log.d("[Main][MyApp]: Building MaterialApp with theme: ${state.currentTheme.name}");
-        return MaterialApp.router(
-          title: 'Brevity',
-          debugShowCheckedModeBanner: false,
-          routerConfig: _routes,
-          // UPDATED: Apply the dynamic theme from the ThemeCubit state
-          theme: createAppTheme(state.currentTheme),
+      builder: (context, themeState) {
+        Log.d("[Main][MyApp]: Building MaterialApp with theme: ${themeState.currentTheme.name}");
+        return BlocBuilder<LocaleCubit, LocaleState>(
+          builder: (context, localeState) {
+            Locale? appLocale;
+            if (localeState is LocaleLoaded) {
+              appLocale = localeState.locale;
+            }
+
+            return MaterialApp.router(
+              title: 'Brevity',
+              debugShowCheckedModeBanner: false,
+              routerConfig: _routes,
+              // UPDATED: Apply the dynamic theme from the ThemeCubit state
+              theme: createAppTheme(themeState.currentTheme),
+              locale: appLocale,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [
+                Locale('en'), // English
+                Locale('es'), // Spanish
+                Locale('fr'), // French
+                Locale('de'), // German
+                Locale('it'), // Italian
+                Locale('ja'), // Japanese
+                Locale('zh'), // Chinese
+                Locale('ru'), // Russian
+                Locale('hi'), // Hindi
+              ],
+            );
+          },
         );
       },
     );

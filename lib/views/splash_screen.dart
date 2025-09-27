@@ -4,6 +4,7 @@ import 'package:brevity/controller/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:brevity/l10n/app_localizations.dart';
 
 // Enhanced Palette - matching login screen
 const Color bgStart = Color(0xFF070B14);
@@ -367,9 +368,9 @@ class SplashScreenState extends State<SplashScreen>
                     colors: [primaryA, primaryB],
                     stops: const [0.0, 1.0],
                   ).createShader(bounds),
-              child: const Text(
-                'BREVITY',
-                style: TextStyle(
+              child: Text(
+                AppLocalizations.of(context)!.appTitle.toUpperCase(),
+                style: const TextStyle(
                   fontSize: 42,
                   fontWeight: FontWeight.w900,
                   color: Colors.white,
@@ -383,7 +384,7 @@ class SplashScreenState extends State<SplashScreen>
 
             // Subtitle
             Text(
-              'Short, Smart, Straight to the point',
+              AppLocalizations.of(context)!.yourSmartNewsCompanion,
               style: TextStyle(
                 color: mutedText,
                 fontSize: 16,
@@ -438,7 +439,7 @@ class SplashScreenState extends State<SplashScreen>
         const SizedBox(height: 16),
 
         Text(
-          'Loading your experience...',
+          AppLocalizations.of(context)!.loading,
           style: TextStyle(
             color: mutedText.withAlpha((0.8 * 255).toInt()),
             fontSize: 14,
