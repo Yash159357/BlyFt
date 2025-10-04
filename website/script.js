@@ -177,3 +177,25 @@ function toggleMobileMenu() {
     console.log('Mobile menu toggled');
     // Implementation for mobile menu can be added here
 }
+
+async function updateGitHubStats() {
+    const starElements = document.querySelectorAll('.github-stars');
+    const forkElements = document.querySelectorAll('.github-forks');
+
+    try {
+        const response = await fetch('https://api.github.com/repos/Yash159357/BlyFt');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const data = await response.json();
+
+        starElements.forEach(el => el.textContent = data.stargazers_count.toLocaleString());
+
+        forkElements.forEach(el => el.textContent = data.forks_count.toLocaleString());
+    } catch (error) {
+        console.error('Failed to fetch GitHub stats:', error);
+        starElements.forEach(el => el.textContent = 'N/A');
+        forkElements.forEach(el => el.textContent = 'N/A');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', updateGitHubStats);
