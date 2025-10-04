@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:blyft/controller/services/auth_service.dart';
+import '../../l10n/app_localizations.dart';
 
 import '../common_widgets/auth_header.dart';
 
@@ -436,11 +437,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen>
               isSmallScreen ? constraints.maxHeight * 0.3 :
               constraints.maxHeight * 0.35,
               child: AnimatedHeader(
-                title: 'Verify Your Email',
-                subtitle: widget.isFromLogin
-                    ? 'Check your email to continue'
-                    : 'Activate your BlyFt account',
-                logoAssetPath: 'assets/logos/BlyFt_white.png',
+        title: AppLocalizations.of(context)!.verifyYourEmail,
+        subtitle: widget.isFromLogin
+          ? AppLocalizations.of(context)!.checkYourEmailToContinue
+          : AppLocalizations.of(context)!.activateYourBrevityAccount,
+        logoAssetPath: 'assets/logos/Brevity_white.png',
                 screenSize: size,
                 isLandscape: false,
               ),
@@ -671,7 +672,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen>
                                       SizedBox(height: isTinyScreen ? 8 : 16),
 
                                       Text(
-                                        'Verification Pending',
+                                        AppLocalizations.of(context)!.verificationPending,
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: isTinyScreen ? 16 : 18,
@@ -771,7 +772,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen>
                                 child: EnhancedButton(
                                   onPressed: _isCheckingVerification ? null : _checkVerification,
                                   isLoading: _isCheckingVerification,
-                                  text: 'CHECK VERIFICATION',
+                                  text: AppLocalizations.of(context)!.checkVerification,
                                   enabled: !_isCheckingVerification,
                                   loadingText: 'Checking...',
                                 ),
@@ -790,7 +791,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen>
                                 isLoading: _isResendingEmail,
                                 text: _resendCooldown > 0
                                     ? 'RESEND IN ${_formatTime(_resendCooldown).toUpperCase()}'
-                                    : 'RESEND EMAIL',
+                                    : AppLocalizations.of(context)!.resendEmail,
                                 loadingText: 'Sending...',
                                 enabled: !_isResendingEmail && _resendCooldown == 0,
                               ),

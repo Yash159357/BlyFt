@@ -34,3 +34,4 @@ class BookmarkError extends BookmarkState {
   @override
   String toString() => 'BookmarkError { message: $message }';
 }
+

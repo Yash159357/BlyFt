@@ -1,5 +1,8 @@
+import 'package:blyft/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+
+import '../../l10n/app_localizations.dart';
 
 // App color palette
 const Color bgStart = Color(0xFF070B14);
@@ -49,12 +52,12 @@ class TutorialOverlay {
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: primaryA.withOpacity(0.3),
+                    color: primaryA.withValues(alpha: 0.3),
                     width: 1,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -81,9 +84,9 @@ class TutorialOverlay {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Swipe Up for More News",
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.swipeUpForMoreNews,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -93,7 +96,7 @@ class TutorialOverlay {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Swipe up to scroll through more news articles and stay updated.",
+                      AppLocalizations.of(context)!.swipeUpToScrollThroughNews,
                       style: TextStyle(
                         color: mutedText,
                         fontSize: 14,
@@ -137,12 +140,12 @@ class TutorialOverlay {
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: primaryA.withOpacity(0.3),
+                    color: primaryA.withValues(alpha: 0.3),
                     width: 1,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -169,9 +172,9 @@ class TutorialOverlay {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Swipe Right for Dashboard",
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.swipeRightForDashboard,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -181,7 +184,7 @@ class TutorialOverlay {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Swipe right to access categories, bookmarks, and settings.",
+                      AppLocalizations.of(context)!.swipeRightToAccessCategories,
                       style: TextStyle(
                         color: mutedText,
                         fontSize: 14,
@@ -221,12 +224,12 @@ class TutorialOverlay {
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: primaryA.withOpacity(0.3),
+                    color: primaryA.withValues(alpha: 0.3),
                     width: 1,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -253,9 +256,9 @@ class TutorialOverlay {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Tap to Bookmark",
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.tapToBookmark,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -265,7 +268,7 @@ class TutorialOverlay {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Tap on any news headline to bookmark it for later reading.",
+                      AppLocalizations.of(context)!.tapOnHeadlineToBookmark,
                       style: TextStyle(
                         color: mutedText,
                         fontSize: 14,
@@ -305,12 +308,12 @@ class TutorialOverlay {
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: primaryA.withOpacity(0.3),
+                    color: primaryA.withValues(alpha: 0.3),
                     width: 1,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -337,9 +340,9 @@ class TutorialOverlay {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      "AI Chat Assistant",
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.aiChatAssistant,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -349,7 +352,7 @@ class TutorialOverlay {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Tap the chatbot to start a conversation about this news article.",
+                      AppLocalizations.of(context)!.tapChatbotToStartConversation,
                       style: TextStyle(
                         color: mutedText,
                         fontSize: 14,
@@ -389,12 +392,12 @@ class TutorialOverlay {
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: primaryA.withOpacity(0.3),
+                    color: primaryA.withValues(alpha: 0.3),
                     width: 1,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -421,9 +424,9 @@ class TutorialOverlay {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Like News Articles",
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.likeNewsArticles,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -433,7 +436,7 @@ class TutorialOverlay {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Tap thumbs up to like articles and improve your personalized feed.",
+                      AppLocalizations.of(context)!.tapThumbsUpToLike,
                       style: TextStyle(
                         color: mutedText,
                         fontSize: 14,
@@ -473,12 +476,12 @@ class TutorialOverlay {
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: primaryA.withOpacity(0.3),
+                    color: primaryA.withValues(alpha: 0.3),
                     width: 1,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -505,9 +508,9 @@ class TutorialOverlay {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Dislike News Articles",
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.dislikeNewsArticles,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -517,7 +520,7 @@ class TutorialOverlay {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Tap thumbs down to dislike articles and see fewer similar stories.",
+                      AppLocalizations.of(context)!.tapThumbsDownToDislike,
                       style: TextStyle(
                         color: mutedText,
                         fontSize: 14,
@@ -557,12 +560,12 @@ class TutorialOverlay {
                   ),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: primaryA.withOpacity(0.3),
+                    color: primaryA.withValues(alpha: 0.3),
                     width: 1,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                       blurRadius: 20,
                       offset: const Offset(0, 8),
                     ),
@@ -589,9 +592,9 @@ class TutorialOverlay {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const Text(
-                      "Listen to News",
-                      style: TextStyle(
+                    Text(
+                      AppLocalizations.of(context)!.listenToNews,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -601,7 +604,7 @@ class TutorialOverlay {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Tap the speaker icon to hear the news article read aloud.",
+                      AppLocalizations.of(context)!.tapSpeakerToListenNews,
                       style: TextStyle(
                         color: mutedText,
                         fontSize: 14,
@@ -623,7 +626,7 @@ class TutorialOverlay {
     TutorialCoachMark(
       targets: targets,
       colorShadow: Colors.black,
-      textSkip: "SKIP",
+      textSkip: AppLocalizations.of(context)!.skip,
       paddingFocus: 10,
       opacityShadow: 0.85,
       hideSkip: false,
@@ -641,10 +644,11 @@ class TutorialOverlay {
         // Allow overlay clicks to continue tutorial
       },
       onSkip: () {
-        print("Skip button pressed!");
+        Log.d("Skip button pressed!");
         onFinish();
         return true;
       },
     ).show(context: context);
   }
 }
+

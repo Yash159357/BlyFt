@@ -39,3 +39,4 @@ class MessageSending extends ChatState {
     Log.d('<CHAT_STATE> MessageSending created');
   }
 }
+

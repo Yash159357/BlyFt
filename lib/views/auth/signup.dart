@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 import '../common_widgets/auth_header.dart';
 
@@ -150,7 +151,7 @@ class _SignupScreenState extends State<SignupScreen>
         _emailError =
             email.isEmpty
                 ? null
-                : (isValid ? null : 'Please enter a valid email');
+                : (isValid ? null : AppLocalizations.of(context)!.pleaseEnterValidEmail);
       });
     }
   }
@@ -179,7 +180,7 @@ class _SignupScreenState extends State<SignupScreen>
         _passwordError =
             password.isEmpty
                 ? null
-                : (isValid ? null : 'Password must be at least 8 characters');
+                : (isValid ? null : AppLocalizations.of(context)!.passwordMustBeAtLeast8Characters);
       });
     }
   }
@@ -202,7 +203,7 @@ class _SignupScreenState extends State<SignupScreen>
         compressQuality: 85,
         uiSettings: [
           AndroidUiSettings(
-            toolbarTitle: 'Crop Profile Picture',
+            toolbarTitle: AppLocalizations.of(context)!.cropProfilePicture,
             toolbarColor: primaryA,
             toolbarWidgetColor: Colors.white,
             initAspectRatio: CropAspectRatioPreset.square,
@@ -211,7 +212,7 @@ class _SignupScreenState extends State<SignupScreen>
             cropStyle: CropStyle.circle,
           ),
           IOSUiSettings(
-            title: 'Crop Profile Picture',
+            title: AppLocalizations.of(context)!.cropProfilePicture,
             aspectRatioLockEnabled: true,
             aspectRatioPickerButtonHidden: true,
             resetAspectRatioEnabled: false,
@@ -230,8 +231,8 @@ class _SignupScreenState extends State<SignupScreen>
       debugPrint('Failed to crop image: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Failed to open image cropper.'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.failedToOpenImageCropper),
             backgroundColor: errorColor,
           ),
         );
@@ -267,7 +268,7 @@ class _SignupScreenState extends State<SignupScreen>
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Failed to pick image: $e'),
+          content: Text('${AppLocalizations.of(context)!.failedToPickImage}: $e'),
           backgroundColor: errorColor,
         ),
       );
@@ -297,7 +298,7 @@ class _SignupScreenState extends State<SignupScreen>
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Failed to take photo: $e'),
+                    content: Text('${AppLocalizations.of(context)!.failedToTakePhoto}: $e'),
           backgroundColor: errorColor,
         ),
       );
@@ -322,9 +323,9 @@ class _SignupScreenState extends State<SignupScreen>
                   children: [
                     ListTile(
                       leading: Icon(Icons.camera_alt, color: primaryB),
-                      title: const Text(
-                        'Take Photo',
-                        style: TextStyle(color: Colors.white),
+                      title: Text(
+                        AppLocalizations.of(context)!.takePhoto,
+                        style: const TextStyle(color: Colors.white),
                       ),
                       onTap: () {
                         Navigator.pop(context);
@@ -333,9 +334,9 @@ class _SignupScreenState extends State<SignupScreen>
                     ),
                     ListTile(
                       leading: Icon(Icons.photo_library, color: primaryB),
-                      title: const Text(
-                        'Choose from Gallery',
-                        style: TextStyle(color: Colors.white),
+                      title: Text(
+                        AppLocalizations.of(context)!.chooseFromGallery,
+                        style: const TextStyle(color: Colors.white),
                       ),
                       onTap: () {
                         Navigator.pop(context);
@@ -345,9 +346,9 @@ class _SignupScreenState extends State<SignupScreen>
                     if (_selectedImage != null)
                       ListTile(
                         leading: Icon(Icons.delete, color: errorColor),
-                        title: const Text(
-                          'Remove Photo',
-                          style: TextStyle(color: Colors.white),
+                        title: Text(
+                          AppLocalizations.of(context)!.removePhoto,
+                          style: const TextStyle(color: Colors.white),
                         ),
                         onTap: () {
                           Navigator.pop(context);
@@ -472,9 +473,9 @@ class _SignupScreenState extends State<SignupScreen>
     return Column(
       children: [
         AnimatedHeader(
-          title: 'Create Account',
-          subtitle: 'Join the BlyFt community',
-          logoAssetPath: 'assets/logos/BlyFt_white.png',
+          title: AppLocalizations.of(context)!.createAccount,
+          subtitle: AppLocalizations.of(context)!.joinBrevityCommunity,
+          logoAssetPath: 'assets/logos/Brevity_white.png',
           screenSize: size,
           isLandscape: false,
         ),
@@ -649,14 +650,14 @@ class _SignupScreenState extends State<SignupScreen>
                           Expanded(
                             child: EnhancedTextField(
                               controller: _nameController,
-                              label: 'Full Name',
-                              hintText: 'Enter your full name',
+                              label: AppLocalizations.of(context)!.fullName,
+                              hintText: AppLocalizations.of(context)!.enterYourFullName,
                               icon: Icons.person_outline_rounded,
                               keyboardType: TextInputType.name,
                               isValid: _nameValid,
                               errorText: _nameError,
                               validator: (v) {
-                                if (v == null || v.isEmpty) return 'Name is required';
+                                if (v == null || v.isEmpty) return AppLocalizations.of(context)!.nameIsRequired;
                                 if (v.length < 2) return 'Name must be at least 2 characters';
                                 return null;
                               },
@@ -740,20 +741,20 @@ class _SignupScreenState extends State<SignupScreen>
 
                       EnhancedTextField(
                         controller: _emailController,
-                        label: 'Email Address',
-                        hintText: 'Enter your email',
+                        label: AppLocalizations.of(context)!.emailAddress,
+                        hintText: AppLocalizations.of(context)!.enterYourEmail,
                         icon: Icons.mail_outline_rounded,
                         keyboardType: TextInputType.emailAddress,
                         isValid: _emailValid,
                         errorText: _emailError,
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return 'Email is required';
+                            return AppLocalizations.of(context)!.emailIsRequired;
                           }
                           if (!RegExp(
                             r'^[\w\-.]+@([\w-]+\.)+[\w-]{2,4}$',
                           ).hasMatch(v)) {
-                            return 'Please enter a valid email address';
+                            return AppLocalizations.of(context)!.pleaseEnterValidEmail;
                           }
                           return null;
                         },
@@ -763,8 +764,8 @@ class _SignupScreenState extends State<SignupScreen>
 
                       EnhancedTextField(
                         controller: _passwordController,
-                        label: 'Password',
-                        hintText: 'Create a strong password',
+                        label: AppLocalizations.of(context)!.password,
+                        hintText: AppLocalizations.of(context)!.createStrongPassword,
                         icon: Icons.lock_outline_rounded,
                         obscureText: _obscurePassword,
                         isValid: _passwordValid,
@@ -790,7 +791,7 @@ class _SignupScreenState extends State<SignupScreen>
                         ),
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return 'Password is required';
+                            return AppLocalizations.of(context)!.passwordIsRequired;
                           }
                           if (v.length < 8) {
                             return 'Password must be at least 8 characters';
@@ -812,7 +813,7 @@ class _SignupScreenState extends State<SignupScreen>
                           child: EnhancedButton(
                             onPressed: _canSignup ? _handleSignup : null,
                             isLoading: _isLoading,
-                            text: 'CREATE ACCOUNT',
+                            text: AppLocalizations.of(context)!.createAccountButton,
                             enabled: _canSignup,
                           ),
                         ),
@@ -841,7 +842,7 @@ class _SignupScreenState extends State<SignupScreen>
                               horizontal: 14,
                             ), // was 16
                             child: Text(
-                              'or continue with',
+                              AppLocalizations.of(context)!.orContinueWith,
                               style: TextStyle(
                                 color: mutedText,
                                 fontSize: 12,
@@ -877,7 +878,7 @@ class _SignupScreenState extends State<SignupScreen>
                                 // Google signup logic
                               },
                               icon: Icons.g_mobiledata_rounded,
-                              text: 'Google',
+                              text: AppLocalizations.of(context)!.google,
                               iconColor: const Color(0xFFDB4437),
                               imagePath: 'assets/logos/google.png',
                             ),
@@ -890,7 +891,7 @@ class _SignupScreenState extends State<SignupScreen>
                                 // Apple signup logic
                               },
                               icon: Icons.apple_rounded,
-                              text: 'Apple',
+                              text: AppLocalizations.of(context)!.apple,
                               iconColor: Colors.white,
                             ),
                           ),
@@ -913,7 +914,7 @@ class _SignupScreenState extends State<SignupScreen>
                           ),
                           child: Text.rich(
                             TextSpan(
-                              text: "Already have an account? ",
+                              text: AppLocalizations.of(context)!.alreadyHaveAccount,
                               style: TextStyle(
                                 color: mutedText,
                                 fontSize: 14,
@@ -921,7 +922,7 @@ class _SignupScreenState extends State<SignupScreen>
                               ),
                               children: [
                                 TextSpan(
-                                  text: 'Login',
+                                  text: AppLocalizations.of(context)!.login,
                                   style: TextStyle(
                                     color: primaryB,
                                     fontWeight: FontWeight.w700,
@@ -965,19 +966,19 @@ class PasswordStrengthIndicator extends StatelessWidget {
 
     switch (strength) {
       case PasswordStrength.weak:
-        strengthText = 'Weak';
+        strengthText = AppLocalizations.of(context)!.weak;
         textColor = errorColor;
         barColor = errorColor;
         strengthLevel = 0.33;
         break;
       case PasswordStrength.medium:
-        strengthText = 'Medium';
+        strengthText = AppLocalizations.of(context)!.medium;
         textColor = warningColor;
         barColor = warningColor;
         strengthLevel = 0.66;
         break;
       case PasswordStrength.strong:
-        strengthText = 'Strong';
+        strengthText = AppLocalizations.of(context)!.strong;
         textColor = successColor;
         barColor = successColor;
         strengthLevel = 1.0;
@@ -1524,3 +1525,4 @@ class _EnhancedSocialButtonState extends State<EnhancedSocialButton>
     );
   }
 }
+

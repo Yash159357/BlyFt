@@ -37,6 +37,10 @@ import 'package:blyft/controller/services/notification_service.dart';
 import 'package:app_links/app_links.dart';
 // LOGGER IMPORT
 import 'package:blyft/utils/logger.dart';
+// LOCALIZATION IMPORTS
+import 'package:blyft/l10n/app_localizations.dart';
+import 'package:blyft/controller/cubit/locale/locale_cubit.dart';
+import 'package:blyft/controller/cubit/locale/locale_state.dart';
 
 // Create a router with auth state handling
 final _routes = GoRouter(
@@ -470,7 +474,7 @@ void main() async {
           RepositoryProvider.value(value: newsService),
           RepositoryProvider.value(value: bookmarkRepository),
         ],
-        child: MultiBlocProvider(
+          child: MultiBlocProvider(
           providers: [
             BlocProvider(
               create: (context) {
@@ -496,6 +500,13 @@ void main() async {
                   "[Main][BlocProvider]: Creating ThemeCubit and initializing theme",
                 );
                 return ThemeCubit()..initializeTheme();
+              },
+            ),
+            // Locale cubit for language selection (keep localization)
+            BlocProvider(
+              create: (context) {
+                Log.d("[Main][BlocProvider]: Creating LocaleCubit");
+                return LocaleCubit();
               },
             ),
           ],
@@ -527,17 +538,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Log.d("[Main][MyApp]: Building app widget tree");
 
-    // UPDATED: Wrap with BlocBuilder to react to theme changes
+    // UPDATED: Wrap with BlocBuilder to react to theme changes and listen to LocaleCubit
     return BlocBuilder<ThemeCubit, ThemeState>(
-      builder: (context, state) {
-        Log.d(
-          "[Main][MyApp]: Building MaterialApp with theme: ${state.currentTheme.name}",
-        );
-        return MaterialApp.router(
-          title: 'BlyFt',
-          debugShowCheckedModeBanner: false,
-          routerConfig: _routes,
-          theme: createAppTheme(state.currentTheme),
+      builder: (context, themeState) {
+        Log.d("[Main][MyApp]: Building MaterialApp with theme: ${themeState.currentTheme.name}");
+        return BlocBuilder<LocaleCubit, LocaleState>(
+          builder: (context, localeState) {
+            Locale? appLocale;
+            if (localeState is LocaleLoaded) appLocale = localeState.locale;
+
+            return MaterialApp.router(
+              title: 'Brevity',
+              debugShowCheckedModeBanner: false,
+              routerConfig: _routes,
+              // Apply dynamic theme from ThemeCubit
+              theme: createAppTheme(themeState.currentTheme),
+              locale: appLocale,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+            );
+          },
         );
       },
     );
@@ -591,7 +611,7 @@ class _DeepLinkHandlerState extends State<DeepLinkHandler> {
       final uri = Uri.parse(link);
       Log.d("[DeepLink]: Parsed URI: $uri");
 
-      if (uri.scheme == 'brevity' && uri.host == 'share') {
+      if (uri.scheme == 'blyft' && uri.host == 'share') {
         final id = uri.queryParameters['id'];
         if (id != null && id.isNotEmpty) {
           Log.d("[DeepLink]: Navigating to shared news with id: $id");
@@ -621,3 +641,4 @@ class _DeepLinkHandlerState extends State<DeepLinkHandler> {
     return widget.child;
   }
 }
+

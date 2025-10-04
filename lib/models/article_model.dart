@@ -65,3 +65,4 @@ class Article {
     return '${(difference.inDays / 7).floor()}w ago';
   }
 }
+

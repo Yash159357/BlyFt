@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'dart:ui';
 import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
 import 'package:blyft/models/theme_model.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({super.key});
@@ -149,7 +150,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             ),
             const Gap(8),
             Text(
-              'Contact Us',
+              AppLocalizations.of(context)!.contactUs,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ],
@@ -183,14 +184,14 @@ class _ContactUsScreenState extends State<ContactUsScreen>
                 ),
                 const Gap(12),
                 Text(
-                  'Get in Touch',
+                  AppLocalizations.of(context)!.getInTouch,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             const Gap(16),
             Text(
-              'For support, feedback, or questions about the app, reach out to our development team.',
+              AppLocalizations.of(context)!.supportContactMessage,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: Theme.of(context).colorScheme.onSurface.withAlpha((0.7 * 255).toInt()),
                 height: 1.4,
@@ -199,7 +200,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             const Gap(24),
             _buildContactCard(
               name: 'Samarth Sharma',
-              role: 'Co-Developer',
+              role: AppLocalizations.of(context)!.coDeveloper,
               email: 'saysamarth26@gmail.com',
               phone: '+91 8800894252',
               theme: appTheme,
@@ -207,7 +208,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             const Gap(16),
             _buildContactCard(
               name: 'Yash',
-              role: 'Co-Developer',
+              role: AppLocalizations.of(context)!.coDeveloper,
               email: 'yashmalihan3@gmail.com',
               phone: '+91 8882462047',
               theme: appTheme,
@@ -278,17 +279,17 @@ class _ContactUsScreenState extends State<ContactUsScreen>
           const Gap(16),
           _buildContactItem(
             icon: Icons.email_outlined,
-            label: 'Email',
+            label: AppLocalizations.of(context)!.email,
             value: email,
-            onTap: () => _copyToClipboard(email, 'Email'),
+            onTap: () => _copyToClipboard(email, AppLocalizations.of(context)!.email),
             theme: theme,
           ),
           const Gap(8),
           _buildContactItem(
             icon: Icons.phone_outlined,
-            label: 'Phone',
+            label: AppLocalizations.of(context)!.phone,
             value: phone,
-            onTap: () => _copyToClipboard(phone, 'Phone number'),
+            onTap: () => _copyToClipboard(phone, AppLocalizations.of(context)!.phoneNumber),
             theme: theme,
           ),
         ],
@@ -355,7 +356,7 @@ class _ContactUsScreenState extends State<ContactUsScreen>
             const Gap(8),
             Expanded(
               child: Text(
-                'We typically respond within 1-2 business days',
+                AppLocalizations.of(context)!.responseTimeMessage,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).colorScheme.onSurface.withAlpha((0.7 * 255).toInt()),
                 ),
@@ -367,3 +368,4 @@ class _ContactUsScreenState extends State<ContactUsScreen>
     );
   }
 }
+

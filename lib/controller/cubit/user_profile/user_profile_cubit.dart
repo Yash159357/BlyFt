@@ -531,3 +531,4 @@ class UserProfileCubit extends Cubit<UserProfileState> {
     }
   }
 }
+

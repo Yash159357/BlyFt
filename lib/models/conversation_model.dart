@@ -21,3 +21,4 @@ class Conversation {
         'timestamp': timestamp.toIso8601String(),
       };
 }
+

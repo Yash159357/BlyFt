@@ -219,3 +219,4 @@ class ReactionQueue {
   bool isArticleLiked(String url) => _likedUrls.contains(url);
   bool isArticleDisliked(String url) => _dislikedUrls.contains(url);
 }
+

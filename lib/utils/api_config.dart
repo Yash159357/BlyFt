@@ -17,3 +17,4 @@ class ApiConfig {
   static String get usersUrl => '$baseUrl$usersEndpoint';
   static String get bookmarksUrl => '$baseUrl$bookmarksEndpoint';
 }
+

@@ -557,3 +557,4 @@ class NewsService {
     }
   }
 }
+

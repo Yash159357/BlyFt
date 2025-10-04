@@ -54,3 +54,4 @@ class DefaultFirebaseOptions {
     iosBundleId: 'com.unity.blyft',
   );
 }
+

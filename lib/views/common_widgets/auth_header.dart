@@ -164,3 +164,4 @@ class _AnimatedHeaderState extends State<AnimatedHeader>
     );
   }
 }
+

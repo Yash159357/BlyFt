@@ -125,3 +125,4 @@ class UserProfileState extends Equatable {
     }
   }
 }
+

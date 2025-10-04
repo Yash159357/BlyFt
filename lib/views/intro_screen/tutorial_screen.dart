@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 class TutorialScreen extends StatefulWidget {
-  const TutorialScreen({Key? key}) : super(key: key);
+  const TutorialScreen({super.key});
 
   @override
   State<TutorialScreen> createState() => _TutorialScreenState();
@@ -22,14 +23,7 @@ class _TutorialScreenState extends State<TutorialScreen>
     'assets/gifs/chatbot.gif',
   ];
 
-  static const _labels = [
-    'Swipe up to read more news',
-    'Swipe right to open dashboard',
-    'Tap headline to bookmark news',
-    'Tap speaker icon to hear news',
-    'Tap this icon to open full article',
-    'Tap AI button to chat with assistant',
-  ];
+  // labels are provided by localization at runtime
 
   @override
   void initState() {
@@ -118,12 +112,20 @@ class _TutorialScreenState extends State<TutorialScreen>
                   color: Colors.black87,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: const Color(0xFF29C0FF).withOpacity(0.5),
+                    color: const Color(0xFF29C0FF).withValues(alpha: 0.5),
                     width: 1,
                   ),
                 ),
                 child: Text(
-                  _labels[_step],
+                  // Map placeholder keys to localized strings
+                  [
+                    AppLocalizations.of(context)!.swipeUpForMoreNews,
+                    AppLocalizations.of(context)!.swipeRightToBookmark,
+                    AppLocalizations.of(context)!.tapHeadlineToBookmark,
+                    AppLocalizations.of(context)!.tapToHearNews,
+                    AppLocalizations.of(context)!.tapThisIconToOpenFullArticle,
+                    AppLocalizations.of(context)!.tapAIButtonToChat,
+                  ][_step],
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
@@ -139,9 +141,13 @@ class _TutorialScreenState extends State<TutorialScreen>
               top: size.height * 0.06,
               left: 0,
               right: 0,
-              child: Center(
+                child: Center(
                 child: Text(
-                  'Step ${_step + 1} of ${_gifAssets.length} • Tap anywhere to continue',
+          // stepStatus is generated as a function with placeholders
+          AppLocalizations.of(context)!.stepStatus(
+            (_step + 1).toString(),
+            _gifAssets.length.toString(),
+          ),
                   style: const TextStyle(color: Colors.white70, fontSize: 14),
                 ),
               ),
@@ -152,3 +158,4 @@ class _TutorialScreenState extends State<TutorialScreen>
     );
   }
 }
+

@@ -11,3 +11,4 @@ enum NewsCategory {
     return NewsCategory.values[index];
   }
 }
+

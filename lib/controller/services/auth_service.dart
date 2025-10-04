@@ -19,7 +19,7 @@ class AuthService {
   factory AuthService() => _instance;
   AuthService._internal();
 
-  // final String _baseUrl = 'https://brevity-backend-khaki.vercel.app/api/auth';
+  // final String _baseUrl = 'https://blyft-backend-khaki.vercel.app/api/auth';
   //static const String _baseUrl = 'http://10.0.2.2:5001/api/auth';
   String get _baseUrl => ApiConfig.authUrl;
 
@@ -844,3 +844,4 @@ class AuthService {
     }
   }
 }
+

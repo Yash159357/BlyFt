@@ -38,3 +38,4 @@ class Log {
     _logger.i("[${DateTime.now()}] [INFO] $message");
   }
 }
+

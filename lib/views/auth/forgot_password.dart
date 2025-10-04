@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:blyft/controller/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../l10n/app_localizations.dart';
 
 import '../common_widgets/auth_header.dart';
 
@@ -430,9 +431,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
     return Column(
       children: [
         AnimatedHeader(
-          title: 'Reset Password',
-          subtitle: 'Enter your email to receive reset instructions',
-          logoAssetPath: 'assets/logos/BlyFt_white.png',
+          title: AppLocalizations.of(context)!.resetPassword,
+          subtitle: AppLocalizations.of(context)!.enterEmailForReset,
+          logoAssetPath: 'assets/logos/Brevity_white.png',
           screenSize: size,
           isLandscape: false,
         ),
@@ -598,20 +599,20 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
 
                       EnhancedTextField(
                         controller: _emailController,
-                        label: 'Email Address',
-                        hintText: 'Enter your email',
+                        label: AppLocalizations.of(context)!.emailAddress,
+                        hintText: AppLocalizations.of(context)!.enterYourEmail,
                         icon: Icons.mail_outline_rounded,
                         keyboardType: TextInputType.emailAddress,
                         isValid: _emailValid,
                         errorText: _emailError,
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return 'Email is required';
+                            return AppLocalizations.of(context)!.emailIsRequired;
                           }
                           if (!RegExp(
                             r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                           ).hasMatch(v)) {
-                            return 'Please enter a valid email address';
+                            return AppLocalizations.of(context)!.pleaseEnterValidEmail;
                           }
                           return null;
                         },
@@ -626,7 +627,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                             flex: 2,
                             child: EnhancedTextField(
                               controller: _otpController,
-                              label: 'OTP',
+                        label: AppLocalizations.of(context)!.otp,
                               hintText: 'Enter 6-digit OTP',
                               icon: Icons.numbers_rounded,
                               keyboardType: TextInputType.number,
@@ -634,7 +635,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                               errorText: _otpError,
                               validator: (v) {
                                 if (v == null || v.isEmpty) {
-                                  return 'OTP is required';
+                                  return AppLocalizations.of(context)!.otpIsRequired;
                                 }
                                 if (v.length != 6) {
                                   return 'OTP must be 6 digits';
@@ -659,7 +660,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                                                 _emailValid && !_isLoading
                                                     ? _sendOtp
                                                     : null,
-                                            text: 'Send',
+                                            text: AppLocalizations.of(context)!.send,
                                             isLoading: _isLoading && !_sentOtp,
                                           )
                                           : Container(
@@ -697,7 +698,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                                                   child: Text(
                                                     _remainingSeconds > 0
                                                         ? '${_remainingSeconds}s'
-                                                        : 'Resend',
+                                                        : AppLocalizations.of(context)!.resend,
                                                     style: TextStyle(
                                                       color:
                                                           _remainingSeconds >
@@ -725,8 +726,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
 
                       EnhancedTextField(
                         controller: _newPasswordController,
-                        label: 'New Password',
-                        hintText: 'Enter new password',
+                        label: AppLocalizations.of(context)!.newPassword,
+                        hintText: AppLocalizations.of(context)!.enterNewPassword,
                         icon: Icons.lock_outline_rounded,
                         obscureText: _obscureNewPassword,
                         isValid: _newPasswordValid,
@@ -753,7 +754,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                         ),
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return 'New password is required';
+                            return AppLocalizations.of(context)!.newPasswordIsRequired;
                           }
                           if (v.length < 8) {
                             return 'Password must be at least 8 characters';
@@ -766,8 +767,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
 
                       EnhancedTextField(
                         controller: _confirmPasswordController,
-                        label: 'Confirm Password',
-                        hintText: 'Confirm new password',
+                        label: AppLocalizations.of(context)!.confirmPassword,
+                        hintText: AppLocalizations.of(context)!.confirmNewPassword,
                         icon: Icons.lock_rounded,
                         obscureText: _obscureConfirmPassword,
                         isValid: _confirmPasswordValid,
@@ -798,10 +799,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                         ),
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return 'Please confirm your password';
+                            return AppLocalizations.of(context)!.pleaseConfirmPassword;
                           }
                           if (v != _newPasswordController.text) {
-                            return 'Passwords do not match';
+                            return AppLocalizations.of(context)!.passwordsDoNotMatch;
                           }
                           return null;
                         },
@@ -817,7 +818,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                             child: EnhancedButton(
                               onPressed: _canReset ? _submitReset : null,
                               isLoading: _isLoading && _sentOtp,
-                              text: 'RESET PASSWORD',
+                              text: AppLocalizations.of(context)!.resetPasswordButton,
                               enabled: _canReset,
                             ),
                           ),
@@ -833,7 +834,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen>
                             widget.goToLoginPage();
                           },
                           child: Text(
-                            'Back to Login',
+                            AppLocalizations.of(context)!.backToLogin,
                             style: TextStyle(
                               color: mutedText,
                               fontSize: 14,
@@ -1333,3 +1334,4 @@ class _EnhancedSecondaryButtonState extends State<EnhancedSecondaryButton>
     );
   }
 }
+

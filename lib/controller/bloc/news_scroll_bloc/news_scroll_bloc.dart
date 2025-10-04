@@ -123,3 +123,4 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     }
   }
 }
+

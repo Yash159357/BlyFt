@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:blyft/controller/cubit/user_profile/user_profile_cubit.dart';
 import 'package:blyft/controller/cubit/user_profile/user_profile_state.dart';
 import 'package:blyft/controller/services/auth_service.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 import 'package:blyft/views/common_widgets/common_appbar.dart';
 import 'package:blyft/views/inner_screens/profile.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../controller/cubit/theme/theme_cubit.dart';
 import '../../controller/cubit/theme/theme_state.dart';
+import '../../controller/cubit/locale/locale_cubit.dart';
+import '../../controller/cubit/locale/locale_state.dart';
 import '../../controller/services/notification_service.dart';
 import '../../models/theme_model.dart';
 
@@ -36,7 +39,6 @@ class CircularTimePicker extends StatefulWidget {
 class _CircularTimePickerState extends State<CircularTimePicker> {
   late int _selectedHour;
   late int _selectedMinute;
-  double _dragAngle = 0.0;
   bool _isDragging = false;
 
   @override
@@ -50,7 +52,6 @@ class _CircularTimePickerState extends State<CircularTimePicker> {
 
   void _updateAngleFromTime() {
     // Convert time to angle (24-hour format, 15 degrees per hour, 0.25 degrees per minute)
-    _dragAngle = ((_selectedHour % 24) * 15 + _selectedMinute * 0.25) * (pi / 180);
   }
 
   void _updateTimeFromAngle(double angle) {
@@ -233,6 +234,10 @@ class _SettingsScreenState extends State<SettingsScreen>
 
     context.read<UserProfileCubit>().loadUserProfile();
 
+    // Load current language from LocaleCubit
+    final localeCubit = context.read<LocaleCubit>();
+    _selectedLanguage = localeCubit.getCurrentLanguageName();
+
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 800),
@@ -303,7 +308,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Select Language', style: theme.textTheme.titleLarge),
+                    Text(AppLocalizations.of(context)!.selectLanguage, style: theme.textTheme.titleLarge),
                     const SizedBox(height: 15),
                     Container(
                       constraints: BoxConstraints(
@@ -374,6 +379,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                     : null,
             onTap: () {
               setState(() => _selectedLanguage = language);
+              // Update the app's locale using LocaleCubit
+              context.read<LocaleCubit>().changeLocale(language);
               Navigator.pop(context);
             },
           ),
@@ -413,7 +420,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'Select Theme Color',
+                          AppLocalizations.of(context)!.selectTheme,
                           style: theme.textTheme.titleLarge,
                         ),
                         const SizedBox(height: 20),
@@ -529,9 +536,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                             size: 60,
                           ),
                           const SizedBox(height: 16),
-                          const Text(
-                            'Delete Account',
-                            style: TextStyle(
+                          Text(
+                            AppLocalizations.of(context)!.deleteAccount,
+                            style: const TextStyle(
                               color: Color.fromARGB(255, 198, 48, 37),
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -539,7 +546,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'This action cannot be undone. All your data will be permanently deleted.',
+                            AppLocalizations.of(context)!.deleteAccountWarning,
                             style: theme.textTheme.bodyMedium,
                             textAlign: TextAlign.center,
                           ),
@@ -579,7 +586,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                                child: const Text('Cancel'),
+                                child: Text(AppLocalizations.of(context)!.cancel),
                               ),
                               ElevatedButton(
                                 onPressed:
@@ -666,7 +673,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                                                 ),
                                           ),
                                         )
-                                        : const Text('Delete Account'),
+                                        : Text(AppLocalizations.of(context)!.deleteAccount),
                               ),
                             ],
                           ),
@@ -723,7 +730,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Set Reminder Time',
+                      AppLocalizations.of(context)!.setReminderTime,
                       style: theme.textTheme.titleLarge,
                     ),
                     const SizedBox(height: 20),
@@ -753,7 +760,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          child: const Text('Cancel'),
+                          child: Text(AppLocalizations.of(context)!.cancel),
                         ),
                         ElevatedButton(
                           onPressed: () async {
@@ -785,7 +792,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          child: const Text('Save'),
+                          child: Text(AppLocalizations.of(context)!.save),
                         ),
                       ],
                     ),
@@ -804,9 +811,9 @@ class _SettingsScreenState extends State<SettingsScreen>
       if (!hasPermission) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text(
-                'Notification permission is required for reminders',
+                AppLocalizations.of(context)!.notificationPermissionRequired,
               ),
               backgroundColor: Colors.red,
             ),
@@ -824,8 +831,8 @@ class _SettingsScreenState extends State<SettingsScreen>
     if (mounted) {
       final message =
           enabled
-              ? 'Daily reminders enabled for $_reminderTime'
-              : 'Daily reminders disabled';
+              ? AppLocalizations.of(context)!.dailyRemindersEnabled(_reminderTime)
+              : AppLocalizations.of(context)!.dailyRemindersDisabled;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(message),
@@ -1063,7 +1070,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                                     8,
                                   ),
                                   child: Text(
-                                    'Settings',
+                                    AppLocalizations.of(context)!.settings,
                                     style: theme.textTheme.headlineMedium
                                         ?.copyWith(
                                           fontWeight: FontWeight.bold,
@@ -1073,14 +1080,14 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Profile',
+                                AppLocalizations.of(context)!.profile,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.person,
-                                  title: 'Edit Profile',
-                                  subtitle: 'Update your personal information',
+                                  title: AppLocalizations.of(context)!.editProfile,
+                                  subtitle: AppLocalizations.of(context)!.updatePersonalInfo,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap: () {
@@ -1095,13 +1102,13 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Appearance',
+                                AppLocalizations.of(context)!.appearance,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildSwitchTile(
                                   icon: Icons.dark_mode,
-                                  title: 'Dark Mode',
+                                  title: AppLocalizations.of(context)!.darkMode,
                                   value: themeState.currentTheme.isDarkMode,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
@@ -1114,8 +1121,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.color_lens,
-                                  title: 'App Theme',
-                                  subtitle: 'Change app accent color',
+                                  title: AppLocalizations.of(context)!.appTheme,
+                                  subtitle: AppLocalizations.of(context)!.changeAppAccentColor,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   trailingWidget: Container(
@@ -1141,13 +1148,13 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Preferences',
+                                AppLocalizations.of(context)!.preferences,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildSwitchTile(
                                   icon: Icons.notifications_active,
-                                  title: 'Push Notifications',
+                                  title: AppLocalizations.of(context)!.pushNotifications,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   value: _notificationsEnabled,
@@ -1160,7 +1167,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                               _buildAnimatedCard(
                                 child: _buildSwitchTile(
                                   icon: Icons.bookmark_add_outlined,
-                                  title: 'Daily Bookmark Reminder',
+                                  title: AppLocalizations.of(context)!.dailyBookmarkReminder,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   value: _reminderEnabled,
@@ -1170,7 +1177,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.schedule,
-                                  title: 'Reminder Time',
+                                  title: AppLocalizations.of(context)!.reminderTime,
                                   subtitle: _reminderTime,
                                   themeColor:
                                       _reminderEnabled
@@ -1194,51 +1201,66 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildAnimatedCard(
-                                child: _buildListTile(
-                                  icon: Icons.language,
-                                  title: 'Language',
-                                  subtitle: _selectedLanguage,
-                                  themeColor:
-                                      themeState.currentTheme.primaryColor,
-                                  onTap: _showLanguageDialog,
+                                child: BlocBuilder<LocaleCubit, LocaleState>(
+                                  builder: (context, localeState) {
+                                    // Update selected language when locale changes
+                                    if (localeState is LocaleLoaded) {
+                                      final currentLanguage = context.read<LocaleCubit>().getCurrentLanguageName();
+                                      if (_selectedLanguage != currentLanguage) {
+                                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                                          setState(() {
+                                            _selectedLanguage = currentLanguage;
+                                          });
+                                        });
+                                      }
+                                    }
+                                    return _buildListTile(
+                                      icon: Icons.language,
+                                      title: AppLocalizations.of(context)!.language,
+                                      subtitle: _selectedLanguage,
+                                      themeColor:
+                                          themeState.currentTheme.primaryColor,
+                                      onTap: _showLanguageDialog,
+                                    );
+                                  },
                                 ),
                               ),
                               _buildSectionHeader(
-                                'App',
+                                AppLocalizations.of(context)!.app,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.share,
-                                  title: 'Share App',
-                                  subtitle: 'Tell your friends about us',
+                                  title: AppLocalizations.of(context)!.shareApp,
+                                  subtitle: AppLocalizations.of(context)!.tellYourFriends,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap:
                                       () => Share.share(
-                                        'Hey! I\'m using this amazing app. You can try it too! 📲\n\nDownload here: https://play.google.com/store/apps/details?id=com.placeholder',
+                                        AppLocalizations.of(context)!.shareAppMessage,
                                       ),
                                 ),
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.star_rate,
-                                  title: 'Rate App',
-                                  subtitle: 'Leave feedback on the store',
+                                  title: AppLocalizations.of(context)!.rateApp,
+                                  subtitle: AppLocalizations.of(context)!.leaveFeedback,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap: () {},
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Contact',
+                                AppLocalizations.of(context)!.contact,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.contact_mail,
-                                  title: 'Contact Us',
-                                  subtitle: 'Get in touch with support',
+                                  title: AppLocalizations.of(context)!.contactUs,
+                                  subtitle: AppLocalizations.of(context)!.getInTouch,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap: () => context.push('/contactUs'),
@@ -1247,8 +1269,8 @@ class _SettingsScreenState extends State<SettingsScreen>
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.info,
-                                  title: 'About Us',
-                                  subtitle: 'Learn more about us',
+                                  title: AppLocalizations.of(context)!.aboutUs,
+                                  subtitle: AppLocalizations.of(context)!.learnMoreAboutUs,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   onTap: () {
@@ -1257,14 +1279,14 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 ),
                               ),
                               _buildSectionHeader(
-                                'Account',
+                                AppLocalizations.of(context)!.account,
                                 themeState.currentTheme.primaryColor,
                               ),
                               _buildAnimatedCard(
                                 child: _buildListTile(
                                   icon: Icons.logout,
-                                  title: 'Log Out',
-                                  subtitle: 'See you again soon',
+                                  title: AppLocalizations.of(context)!.logOut,
+                                  subtitle: AppLocalizations.of(context)!.seeYouAgainSoon,
                                   themeColor:
                                       themeState.currentTheme.primaryColor,
                                   titleColor:
@@ -1286,9 +1308,9 @@ class _SettingsScreenState extends State<SettingsScreen>
                                 child: _buildListTile(
                                   icon: Icons.delete_forever,
                                   iconColor: Colors.red,
-                                  title: 'Delete Account',
+                                  title: AppLocalizations.of(context)!.deleteAccount,
                                   titleColor: Colors.red,
-                                  subtitle: 'Permanently erase your data',
+                                  subtitle: AppLocalizations.of(context)!.permanentlyEraseData,
                                   themeColor: Colors.red,
                                   onTap: _confirmDeleteProfile,
                                 ),
@@ -1430,3 +1452,4 @@ class _SettingsScreenState extends State<SettingsScreen>
     );
   }
 }
+

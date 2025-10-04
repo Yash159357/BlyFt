@@ -37,3 +37,4 @@ class UpdateNewsIndex extends NewsEvent {
   @override
   List<Object> get props => [newIndex];
 }
+

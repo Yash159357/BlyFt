@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../controller/cubit/theme/theme_state.dart';
+import '../../l10n/app_localizations.dart';
 import '../../models/theme_model.dart';
 
 class EndOfNewsScreen extends StatefulWidget {
@@ -199,7 +200,7 @@ class _EndOfNewsScreenState extends State<EndOfNewsScreen>
   Widget _buildPrimaryMessage(ThemeData theme) {
     final isDarkMode = theme.brightness == Brightness.dark;
     return Text(
-      "You're done for the day",
+      AppLocalizations.of(context)!.youreDoneForTheDay,
       style: GoogleFonts.poppins(
         color: isDarkMode ? Colors.white : Colors.black,
         fontSize: 28,
@@ -216,7 +217,7 @@ class _EndOfNewsScreenState extends State<EndOfNewsScreen>
     return Column(
       children: [
         Text(
-          'Take a well-deserved break',
+          AppLocalizations.of(context)!.takeAWellDeservedBreak,
           style: GoogleFonts.inter(
             color: isDarkMode ? Colors.white : Colors.black,
             fontSize: 16,
@@ -227,7 +228,7 @@ class _EndOfNewsScreenState extends State<EndOfNewsScreen>
         ),
         const Gap(8),
         Text(
-          'New stories will appear here soon',
+          AppLocalizations.of(context)!.newStoriesWillAppearSoon,
           style: GoogleFonts.inter(
             color: isDarkMode ? Colors.white : Colors.black,
             fontSize: 14,
@@ -274,7 +275,7 @@ class _EndOfNewsScreenState extends State<EndOfNewsScreen>
               ),
               const Gap(8),
               Text(
-                'Explore other sections',
+                AppLocalizations.of(context)!.exploreOtherSections,
                 style: GoogleFonts.inter(
                   color: theme.colorScheme.onSurface.withAlpha(
                     (0.7 * 255).toInt(),
@@ -290,3 +291,4 @@ class _EndOfNewsScreenState extends State<EndOfNewsScreen>
     );
   }
 }
+

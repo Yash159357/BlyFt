@@ -174,3 +174,4 @@ class ThemeCubit extends Cubit<ThemeState> {
   // Check if theme is loading
   bool get isLoading => state.status == ThemeStatus.loading;
 }
+

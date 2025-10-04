@@ -7,6 +7,7 @@ import 'package:blyft/controller/bloc/bookmark_bloc/bookmark_state.dart';
 import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
 import 'package:blyft/models/article_model.dart';
 
+
 class ArticleListItem extends StatelessWidget {
   final Article article;
   final VoidCallback onTap;
@@ -53,7 +54,6 @@ class ArticleListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           child: Row(
             children: [
-              // Image section
               SizedBox(
                 width: 110,
                 height: 120,
@@ -236,3 +236,4 @@ class ArticleListItem extends StatelessWidget {
     );
   }
 }
+

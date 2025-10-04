@@ -1,0 +1,1143 @@
+{
+  "@@locale": "en",
+  "appTitle": "Blyft",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel action"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save action"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry action"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete action"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit action"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings screen title"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile screen title"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading indicator text"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Generic error message"
+  },
+  "success": "Success",
+  "@success": {
+    "description": "Success message"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button text"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Yes answer"
+  },
+  "no": "No",
+  "@no": {
+    "description": "No answer"
+  },
+  "unknown": "Unknown",
+  "@unknown": {
+    "description": "Unknown status"
+  },
+  "never": "Never",
+  "@never": {
+    "description": "Never status"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home screen title"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Search functionality"
+  },
+  "bookmarks": "Bookmarks",
+  "@bookmarks": {
+    "description": "Bookmarks screen title"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications screen title"
+  },
+  "signIn": "Sign In",
+  "@signIn": {
+    "description": "Sign in action"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign up action"
+  },
+  "signOut": "Sign Out",
+  "@signOut": {
+    "description": "Sign out action"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field label"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password field label"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password field label"
+  },
+  "forgotPassword": "Forgot Password?",
+  "@forgotPassword": {
+    "description": "Forgot password link text"
+  },
+  "createAccount": "Create Account",
+  "@createAccount": {
+    "description": "Create account action"
+  },
+  "alreadyHaveAccount": "Already have an account?",
+  "@alreadyHaveAccount": {
+    "description": "Already have account prompt"
+  },
+  "dontHaveAccount": "Don't have an account?",
+  "@dontHaveAccount": {
+    "description": "Don't have account prompt"
+  },
+  "selectLanguage": "Select Language",
+  "@selectLanguage": {
+    "description": "Language selection dialog title"
+  },
+  "selectTheme": "Select Theme Color",
+  "@selectTheme": {
+    "description": "Theme selection dialog title"
+  },
+  "appearance": "Appearance",
+  "@appearance": {
+    "description": "Appearance settings section"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode toggle"
+  },
+  "editProfile": "Edit Profile",
+  "@editProfile": {
+    "description": "Edit profile action"
+  },
+  "updatePersonalInfo": "Update your personal information",
+  "@updatePersonalInfo": {
+    "description": "Profile update description"
+  },
+  "deleteAccount": "Delete Account",
+  "@deleteAccount": {
+    "description": "Delete account action"
+  },
+  "enterPasswordToConfirm": "Enter your password to confirm",
+  "@enterPasswordToConfirm": {
+    "description": "Password confirmation prompt"
+  },
+  "setReminderTime": "Set Reminder Time",
+  "@setReminderTime": {
+    "description": "Reminder time setting"
+  },
+  "hour": "Hour",
+  "@hour": {
+    "description": "Hour label"
+  },
+  "minute": "Minute",
+  "@minute": {
+    "description": "Minute label"
+  },
+  "notificationPermissionRequired": "Notification permission is required for reminders",
+  "@notificationPermissionRequired": {
+    "description": "Notification permission required message"
+  },
+  "dailyRemindersDisabled": "Daily reminders disabled",
+  "@dailyRemindersDisabled": {
+    "description": "Daily reminders disabled message"
+  },
+  "user": "User",
+  "@user": {
+    "description": "User label"
+  },
+  "contact": "Contact",
+  "@contact": {
+    "description": "Contact label"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "spanish": "Spanish",
+  "@spanish": {
+    "description": "Spanish language option"
+  },
+  "french": "French",
+  "@french": {
+    "description": "French language option"
+  },
+  "german": "German",
+  "@german": {
+    "description": "German language option"
+  },
+  "italian": "Italian",
+  "@italian": {
+    "description": "Italian language option"
+  },
+  "japanese": "Japanese",
+  "@japanese": {
+    "description": "Japanese language option"
+  },
+  "chinese": "Chinese",
+  "@chinese": {
+    "description": "Chinese language option"
+  },
+  "russian": "Russian",
+  "@russian": {
+    "description": "Russian language option"
+  },
+  "hindi": "Hindi",
+  "@hindi": {
+    "description": "Hindi language option"
+  },
+  "profileSettings": "Profile Settings",
+  "@profileSettings": {
+    "description": "Profile settings screen title"
+  },
+  "fullName": "Full Name",
+  "@fullName": {
+    "description": "Full name field label"
+  },
+  "emailAddress": "Email Address",
+  "@emailAddress": {
+    "description": "Email address field label"
+  },
+  "emailVerified": "Email Verified",
+  "@emailVerified": {
+    "description": "Email verification status"
+  },
+  "accountCreated": "Account Created",
+  "@accountCreated": {
+    "description": "Account creation date label"
+  },
+  "lastUpdated": "Last Updated",
+  "@lastUpdated": {
+    "description": "Last update date label"
+  },
+  "saveChanges": "Save Changes",
+  "@saveChanges": {
+    "description": "Save changes button text"
+  },
+  "takePhoto": "Take Photo",
+  "@takePhoto": {
+    "description": "Take photo option"
+  },
+  "chooseFromGallery": "Choose from Gallery",
+  "@chooseFromGallery": {
+    "description": "Choose from gallery option"
+  },
+  "removePhoto": "Remove Photo",
+  "@removePhoto": {
+    "description": "Remove photo option"
+  },
+  "profileUpdatedSuccessfully": "Profile updated successfully",
+  "@profileUpdatedSuccessfully": {
+    "description": "Profile update success message"
+  },
+  "profilePhotoRemovedSuccessfully": "Profile photo removed successfully",
+  "@profilePhotoRemovedSuccessfully": {
+    "description": "Profile photo removal success message"
+  },
+  "noChangesToSave": "No changes to save",
+  "@noChangesToSave": {
+    "description": "No changes detected message"
+  },
+  "nameCannotBeBlank": "Name cannot be blank",
+  "@nameCannotBeBlank": {
+    "description": "Name validation error message"
+  },
+  "failedToPickImage": "Failed to pick image",
+  "@failedToPickImage": {
+    "description": "Image picker error message"
+  },
+  "failedToTakePhoto": "Failed to take photo",
+  "@failedToTakePhoto": {
+    "description": "Camera error message"
+  },
+  "errorRemovingPhoto": "Error removing photo",
+  "@errorRemovingPhoto": {
+    "description": "Photo removal error message"
+  },
+  "retrySearch": "Retry Search",
+  "@retrySearch": {
+    "description": "Retry search action"
+  },
+  "pleaseEnterSearchQuery": "Please enter a search query",
+  "@pleaseEnterSearchQuery": {
+    "description": "Search query prompt"
+  },
+  "readArticle": "Read Article",
+  "@readArticle": {
+    "description": "Read article action"
+  },
+  "contactUs": "Contact Us",
+  "@contactUs": {
+    "description": "Contact us action"
+  },
+  "getInTouch": "Get in Touch",
+  "@getInTouch": {
+    "description": "Get in touch prompt"
+  },
+  "phoneNumber": "Phone number",
+  "@phoneNumber": {
+    "description": "Phone number label"
+  },
+  "messageCopiedToClipboard": "Message copied to clipboard",
+  "@messageCopiedToClipboard": {
+    "description": "Message copy success notification"
+  },
+  "failedToOpenImageCropper": "Failed to open image cropper.",
+  "@failedToOpenImageCropper": {
+    "description": "Image cropper error message"
+  },
+  "swipeUpForMoreNews": "Swipe up for more news",
+  "@swipeUpForMoreNews": {
+    "description": "Swipe up instruction"
+  },
+  "swipeRightToBookmark": "Swipe right to bookmark",
+  "@swipeRightToBookmark": {
+    "description": "Swipe right instruction"
+  },
+  "chatWithAI": "Chat with AI assistant",
+  "@chatWithAI": {
+    "description": "AI chat feature description"
+  },
+  "tapToHearNews": "Tap to hear the news",
+  "@tapToHearNews": {
+    "description": "Text-to-speech instruction"
+  },
+  "likeThisArticle": "Like this article",
+  "@likeThisArticle": {
+    "description": "Like article action"
+  },
+  "dislikeThisArticle": "Dislike this article",
+  "@dislikeThisArticle": {
+    "description": "Dislike article action"
+  },
+  "readHeadline": "Read the headline",
+  "@readHeadline": {
+    "description": "Read headline action"
+  },
+  "pushNotifications": "Push Notifications",
+  "@pushNotifications": {
+    "description": "Push notifications setting"
+  },
+  "dailyBookmarkReminder": "Daily Bookmark Reminder",
+  "@dailyBookmarkReminder": {
+    "description": "Daily bookmark reminder setting"
+  },
+  "reminderTime": "Reminder Time",
+  "@reminderTime": {
+    "description": "Reminder time setting"
+  },
+  "shareApp": "Share App",
+  "@shareApp": {
+    "description": "Share app action"
+  },
+  "tellYourFriends": "Tell your friends about us",
+  "@tellYourFriends": {
+    "description": "Share app subtitle"
+  },
+  "rateApp": "Rate App",
+  "@rateApp": {
+    "description": "Rate app action"
+  },
+  "leaveFeedback": "Leave feedback on the store",
+  "@leaveFeedback": {
+    "description": "Rate app subtitle"
+  },
+  "aboutUs": "About Us",
+  "@aboutUs": {
+    "description": "About us section"
+  },
+  "learnMoreAboutUs": "Learn more about us",
+  "@learnMoreAboutUs": {
+    "description": "About us subtitle"
+  },
+  "logOut": "Log Out",
+  "@logOut": {
+    "description": "Log out action"
+  },
+  "seeYouAgainSoon": "See you again soon",
+  "@seeYouAgainSoon": {
+    "description": "Log out subtitle"
+  },
+  "appTheme": "App Theme",
+  "@appTheme": {
+    "description": "App theme setting"
+  },
+  "changeAppAccentColor": "Change app accent color",
+  "@changeAppAccentColor": {
+    "description": "Theme setting subtitle"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting"
+  },
+  "welcomeToBrevity": "Welcome to\nBrevity",
+  "@welcomeToBrevity": {
+    "description": "Intro screen welcome title"
+  },
+  "yourSmartNewsCompanion": "Your Smart News Companion",
+  "@yourSmartNewsCompanion": {
+    "description": "Intro screen welcome subtitle"
+  },
+  "aFeedJustForYou": "A Feed\nJust For You",
+  "@aFeedJustForYou": {
+    "description": "Intro screen personalization title"
+  },
+  "tailoredToYourTastes": "Tailored to Your Tastes",
+  "@tailoredToYourTastes": {
+    "description": "Intro screen personalization subtitle"
+  },
+  "aiPoweredInsights": "AI-Powered\nInsights",
+  "@aiPoweredInsights": {
+    "description": "Intro screen AI title"
+  },
+  "goBeyondHeadlines": "Go Beyond the Headlines",
+  "@goBeyondHeadlines": {
+    "description": "Intro screen AI subtitle"
+  },
+  "personalizeYourExperience": "Personalize\nYour Experience",
+  "@personalizeYourExperience": {
+    "description": "Intro screen customization title"
+  },
+  "themesAndCustomization": "Themes & Customization",
+  "@themesAndCustomization": {
+    "description": "Intro screen customization subtitle"
+  },
+  "searchNewsTopics": "Search news topics...",
+  "@searchNewsTopics": {
+    "description": "Search field hint text"
+  }
+  ,
+  "deleteAccountWarning": "This action cannot be undone. All your data will be permanently deleted.",
+  "@deleteAccountWarning": {
+    "description": "Warning shown before deleting account"
+  },
+  "reminderTimeSet": "Daily reminders enabled for {time}",
+  "@reminderTimeSet": {
+    "description": "Message shown when reminder is set",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button text"
+  },
+  "topNews": "Top News",
+  "@topNews": {
+    "description": "Top news section title"
+  },
+  "failedToLoadTopNews": "Failed to load top news",
+  "@failedToLoadTopNews": {
+    "description": "Error when top news cannot be fetched"
+  },
+  "topics": "Topics",
+  "@topics": {
+    "description": "Topics section title"
+  },
+  "myFeed": "My Feed",
+  "@myFeed": {
+    "description": "My feed label"
+  },
+  "topStories": "Top Stories",
+  "@topStories": {
+    "description": "Top stories label"
+  },
+  "loadingNews": "Loading news...",
+  "@loadingNews": {
+    "description": "Placeholder shown while news loads"
+  },
+  "newsDescriptionPlaceholder": "News description text will come here...",
+  "@newsDescriptionPlaceholder": {
+    "description": "Placeholder for missing news description"
+  },
+  "noArticlesFound": "No articles found.",
+  "@noArticlesFound": {
+    "description": "Message shown when no articles are available"
+  },
+  "general": "General",
+  "@general": {"description": "General category"},
+  "technology": "Technology",
+  "@technology": {"description": "Technology category"},
+  "politics": "Politics",
+  "@politics": {"description": "Politics category"},
+  "sports": "Sports",
+  "@sports": {"description": "Sports category"},
+  "entertainment": "Entertainment",
+  "@entertainment": {"description": "Entertainment category"},
+  "health": "Health",
+  "@health": {"description": "Health category"},
+  "business": "Business",
+  "@business": {"description": "Business category"},
+  "customizeTheme": "Customize Theme",
+  "@customizeTheme": {"description": "Customize theme button text"},
+  "next": "Next",
+  "@next": {"description": "Next button text"},
+  "getStarted": "Get Started",
+  "@getStarted": {"description": "Get started button text"},
+  "mode": "Mode",
+  "@mode": {"description": "Mode label (dark/light)"},
+  "lightMode": "Light Mode",
+  "@lightMode": {"description": "Light mode label"},
+  "preview": "Preview",
+  "@preview": {"description": "Preview label"},
+  "sampleNewsArticle": "Sample News Article",
+  "@sampleNewsArticle": {"description": "Preview card title"},
+  "sampleNewsArticleSubtitle": "This is how your news cards will look",
+  "@sampleNewsArticleSubtitle": {"description": "Preview card subtitle"},
+  "permanentlyEraseData": "Permanently erase your data",
+  "@permanentlyEraseData": {"description": "Delete account subtitle"},
+  "tapHeadlineToBookmark": "Tap headline to bookmark news",
+  "@tapHeadlineToBookmark": {"description": "Tutorial label"},
+  "tapThisIconToOpenFullArticle": "Tap this icon to open full article",
+  "@tapThisIconToOpenFullArticle": {"description": "Tutorial label"},
+  "tapAIButtonToChat": "Tap AI button to chat with assistant",
+  "@tapAIButtonToChat": {"description": "Tutorial label"},
+  "tapAnywhereToContinue": "Tap anywhere to continue",
+  "@tapAnywhereToContinue": {"description": "Tutorial continuation hint"},
+  "stepStatus": "Step {current} of {total} • Tap anywhere to continue",
+  "@stepStatus": {
+    "description": "Step indicator with total steps",
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "createAccount": "Create Account",
+  "@createAccount": {
+    "description": "Create account title"
+  },
+  "joinBrevityCommunity": "Join the Blyft community",
+  "@joinBrevityCommunity": {
+    "description": "Create account subtitle"
+  },
+  "fullName": "Full Name",
+  "@fullName": {
+    "description": "Full name field label"
+  },
+  "enterYourFullName": "Enter your full name",
+  "@enterYourFullName": {
+    "description": "Full name field hint"
+  },
+  "nameIsRequired": "Name is required",
+  "@nameIsRequired": {
+    "description": "Name validation message"
+  },
+  "emailAddress": "Email Address",
+  "@emailAddress": {
+    "description": "Email address field label"
+  },
+  "enterYourEmail": "Enter your email",
+  "@enterYourEmail": {
+    "description": "Email field hint"
+  },
+  "emailIsRequired": "Email is required",
+  "@emailIsRequired": {
+    "description": "Email validation message"
+  },
+  "pleaseEnterValidEmail": "Please enter a valid email address",
+  "@pleaseEnterValidEmail": {
+    "description": "Email format validation message"
+  },
+  "createStrongPassword": "Create a strong password",
+  "@createStrongPassword": {
+    "description": "Password field hint"
+  },
+  "passwordIsRequired": "Password is required",
+  "@passwordIsRequired": {
+    "description": "Password validation message"
+  },
+  "createAccountButton": "CREATE ACCOUNT",
+  "@createAccountButton": {
+    "description": "Create account button text"
+  },
+  "orContinueWith": "or continue with",
+  "@orContinueWith": {
+    "description": "OAuth separator text"
+  },
+  "google": "Google",
+  "@google": {
+    "description": "Google OAuth button text"
+  },
+  "apple": "Apple",
+  "@apple": {
+    "description": "Apple OAuth button text"
+  },
+  "alreadyHaveAccount": "Already have an account? ",
+  "@alreadyHaveAccount": {
+    "description": "Login redirect text"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "takePhoto": "Take Photo",
+  "@takePhoto": {
+    "description": "Take photo option"
+  },
+  "chooseFromGallery": "Choose from Gallery",
+  "@chooseFromGallery": {
+    "description": "Gallery photo option"
+  },
+  "removePhoto": "Remove Photo",
+  "@removePhoto": {
+    "description": "Remove photo option"
+  },
+  "cropProfilePicture": "Crop Profile Picture",
+  "@cropProfilePicture": {
+    "description": "Crop picture dialog title"
+  },
+  "weak": "Weak",
+  "@weak": {
+    "description": "Weak password strength"
+  },
+  "medium": "Medium",
+  "@medium": {
+    "description": "Medium password strength"
+  },
+  "strong": "Strong",
+  "@strong": {
+    "description": "Strong password strength"
+  },
+  "welcomeBack": "Welcome Back",
+  "@welcomeBack": {
+    "description": "Login screen title"
+  },
+  "signInToAccount": "Sign in to your Blyft account",
+  "@signInToAccount": {
+    "description": "Login screen subtitle"
+  },
+  "enterYourPassword": "Enter your password",
+  "@enterYourPassword": {
+    "description": "Password field hint"
+  },
+  "loginButton": "LOGIN",
+  "@loginButton": {
+    "description": "Login button text"
+  },
+  "createAccount2": "Create account",
+  "@createAccount2": {
+    "description": "Create account link text"
+  },
+  "chooseThemeAndMode": "Choose your preferred theme and mode",
+  "@chooseThemeAndMode": {
+    "description": "Theme selection description"
+  },
+  "themeColor": "THEME COLOR",
+  "@themeColor": {
+    "description": "Theme color section title"
+  },
+  "mode": "MODE",
+  "@mode": {
+    "description": "Mode section title"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode option"
+  },
+  "lightMode": "Light Mode",
+  "@lightMode": {
+    "description": "Light mode option"
+  },
+  "preview": "Preview",
+  "@preview": {
+    "description": "Preview section title"
+  },
+  "sampleNewsArticle": "Sample News Article",
+  "@sampleNewsArticle": {
+    "description": "Sample article title"
+  },
+  "newsCardPreview": "This is how your news cards will look",
+  "@newsCardPreview": {
+    "description": "News card preview description"
+  },
+  "getStarted": "GET STARTED",
+  "@getStarted": {
+    "description": "Get started button"
+  },
+  "dismiss": "DISMISS",
+  "@dismiss": {
+    "description": "Dismiss button"
+  },
+  "tryDifferentSearch": "Try a different search term",
+  "@tryDifferentSearch": {
+    "description": "No search results message"
+  },
+  "searchAgain": "Search Again",
+  "@searchAgain": {
+    "description": "Search again button"
+  },
+  "bookmark": "Bookmark",
+  "@bookmark": {
+    "description": "Bookmark tooltip"
+  },
+  "remove": "Remove",
+  "@remove": {
+    "description": "Remove bookmark tooltip"
+  },
+  "resetPassword": "Reset Password",
+  "@resetPassword": {
+    "description": "Reset password title"
+  },
+  "enterEmailForReset": "Enter your email to receive reset instructions",
+  "@enterEmailForReset": {
+    "description": "Reset password subtitle"
+  },
+  "otp": "OTP",
+  "@otp": {
+    "description": "OTP field label"
+  },
+  "otpIsRequired": "OTP is required",
+  "@otpIsRequired": {
+    "description": "OTP validation message"
+  },
+  "send": "Send",
+  "@send": {
+    "description": "Send button"
+  },
+  "resend": "Resend",
+  "@resend": {
+    "description": "Resend button"
+  },
+  "newPassword": "New Password",
+  "@newPassword": {
+    "description": "New password field label"
+  },
+  "enterNewPassword": "Enter new password",
+  "@enterNewPassword": {
+    "description": "New password field hint"
+  },
+  "newPasswordIsRequired": "New password is required",
+  "@newPasswordIsRequired": {
+    "description": "New password validation"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password field label"
+  },
+  "confirmNewPassword": "Confirm new password",
+  "@confirmNewPassword": {
+    "description": "Confirm password field hint"
+  },
+  "pleaseConfirmPassword": "Please confirm your password",
+  "@pleaseConfirmPassword": {
+    "description": "Confirm password validation"
+  },
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Password match validation"
+  },
+  "otpSentToEmail": "OTP sent to your email",
+  "@otpSentToEmail": {
+    "description": "OTP sent message"
+  },
+  "contactUs": "Contact Us",
+  "@contactUs": {
+    "description": "Contact us title"
+  },
+  "getInTouch": "Get in Touch",
+  "@getInTouch": {
+    "description": "Get in touch subtitle"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email label"
+  },
+  "phone": "Phone",
+  "@phone": {
+    "description": "Phone label"
+  },
+  "phoneNumber": "Phone number",
+  "@phoneNumber": {
+    "description": "Phone number label"
+  },
+  "reportContent": "Report Content",
+  "@reportContent": {
+    "description": "Report content dialog title"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  "submitReport": "Submit Report",
+  "@submitReport": {
+    "description": "Submit report button"
+  },
+  "inaccurateInformation": "Inaccurate Information",
+  "@inaccurateInformation": {
+    "description": "Report reason option"
+  },
+  "offensiveContent": "Offensive Content",
+  "@offensiveContent": {
+    "description": "Report reason option"
+  },
+  "spam": "Spam",
+  "@spam": {
+    "description": "Report reason option"
+  },
+  "other": "Other",
+  "@other": {
+    "description": "Other option"
+  },
+  "newsAiAssistant": "NewsAI Assistant",
+  "@newsAiAssistant": {
+    "description": "AI assistant name"
+  },
+  "poweredByGemini": "Powered by Gemini",
+  "@poweredByGemini": {
+    "description": "AI powered by text"
+  },
+  "articleContext": "Article Context",
+  "@articleContext": {
+    "description": "Article context label"
+  },
+  "somethingWentWrong": "Something went wrong",
+  "@somethingWentWrong": {
+    "description": "Error message"
+  },
+  "report": "Report",
+  "@report": {
+    "description": "Report option"
+  },
+  "aboutUnity": "About Unity",
+  "@aboutUnity": {
+    "description": "About Unity title"
+  },
+  "unityNews": "Unity News",
+  "@unityNews": {
+    "description": "Unity News subtitle"
+  },
+  "aiChatAssistant": "AI Chat Assistant",
+  "@aiChatAssistant": {
+    "description": "AI Chat Assistant feature title"
+  },
+  "discussArticlesChatbot": "Discuss articles with our intelligent chatbot",
+  "@discussArticlesChatbot": {
+    "description": "AI Chat Assistant description"
+  },
+  "curatedContent": "Curated Content",
+  "@curatedContent": {
+    "description": "Curated Content feature title"
+  },
+  "newsReliableSources": "News from reliable sources",
+  "@newsReliableSources": {
+    "description": "Curated Content description"
+  },
+  "realtimeUpdates": "Real-time Updates",
+  "@realtimeUpdates": {
+    "description": "Real-time Updates feature title"
+  },
+  "stayUpdatedLatestNews": "Stay updated with the latest news",
+  "@stayUpdatedLatestNews": {
+    "description": "Real-time Updates description"
+  },
+  "features": "Features",
+  "@features": {
+    "description": "Features section title"
+  },
+  "developers": "Developers",
+  "@developers": {
+    "description": "Developers section title"
+  },
+  "shareAppMessage": "Hey! I'm using this amazing app. You can try it too! 📲\n\nDownload here: https://play.google.com/store/apps/details?id=com.placeholder",
+  "@shareAppMessage": {
+    "description": "Share app message"
+  },
+  "dailyRemindersEnabled": "Daily reminders enabled for {time}",
+  "@dailyRemindersEnabled": {
+    "description": "Daily reminders enabled message",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "9:00 AM"
+      }
+    }
+  },
+  "dailyRemindersDisabled": "Daily reminders disabled",
+  "@dailyRemindersDisabled": {
+    "description": "Daily reminders disabled message"
+  },
+  "resetPasswordButton": "RESET PASSWORD",
+  "@resetPasswordButton": {
+    "description": "Reset password button"
+  },
+  "backToLogin": "Back to Login",
+  "@backToLogin": {
+    "description": "Back to login link"
+  },
+  "verifyYourEmail": "Verify Your Email",
+  "@verifyYourEmail": {
+    "description": "Email verification title"
+  },
+  "checkYourEmailToContinue": "Check your email to continue",
+  "@checkYourEmailToContinue": {
+    "description": "Email verification subtitle"
+  },
+  "activateYourBrevityAccount": "Activate your Blyft account",
+  "@activateYourBrevityAccount": {
+    "description": "Alternative email verification subtitle"
+  },
+  "verificationPending": "Verification Pending",
+  "@verificationPending": {
+    "description": "Verification pending status"
+  },
+  "checkVerification": "CHECK VERIFICATION",
+  "@checkVerification": {
+    "description": "Check verification button"
+  },
+  "resendEmail": "RESEND EMAIL",
+  "@resendEmail": {
+    "description": "Resend email button"
+  },
+  "noBookmarksYet": "No Bookmarks Yet",
+  "@noBookmarksYet": {
+    "description": "No bookmarks message"
+  },
+  "articlesSavedWillAppearHere": "Articles you save will appear here",
+  "@articlesSavedWillAppearHere": {
+    "description": "Empty bookmarks description"
+  },
+  "discoverNews": "Discover News",
+  "@discoverNews": {
+    "description": "Discover news button"
+  },
+  "newStoriesWillAppearSoon": "New stories will appear here soon",
+  "@newStoriesWillAppearSoon": {
+    "description": "End of news message"
+  },
+  "exploreOtherSections": "Explore other sections",
+  "@exploreOtherSections": {
+    "description": "Explore sections button"
+  },
+  "youreDoneForTheDay": "You're done for the day",
+  "@youreDoneForTheDay": {
+    "description": "End of news primary message"
+  },
+  "takeAWellDeservedBreak": "Take a well-deserved break",
+  "@takeAWellDeservedBreak": {
+    "description": "End of news secondary message"
+  },
+  "failedToOpenArticle": "Failed to open article",
+  "@failedToOpenArticle": {
+    "description": "Error message when article fails to open"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Generic error label"
+  },
+  "noResultsFoundFor": "No results found for \"{query}\"",
+  "@noResultsFoundFor": {
+    "description": "No search results message",
+    "placeholders": {
+      "query": {
+        "type": "String",
+        "description": "The search query"
+      }
+    }
+  },
+  "pleaseEnterValidEmail": "Please enter a valid email",
+  "@pleaseEnterValidEmail": {
+    "description": "Email validation error message"
+  },
+  "passwordMustBeAtLeast8Characters": "Password must be at least 8 characters",
+  "@passwordMustBeAtLeast8Characters": {
+    "description": "Password validation error message"
+  },
+  "swipeUpForMoreNews": "Swipe Up for More News",
+  "@swipeUpForMoreNews": {
+    "description": "Tutorial message for swipe up gesture"
+  },
+  "swipeUpToScrollThroughNews": "Swipe up to scroll through more news articles and stay updated.",
+  "@swipeUpToScrollThroughNews": {
+    "description": "Tutorial description for swipe up gesture"
+  },
+  "swipeRightForDashboard": "Swipe Right for Dashboard",
+  "@swipeRightForDashboard": {
+    "description": "Tutorial message for swipe right gesture"
+  },
+  "swipeRightToAccessCategories": "Swipe right to access categories, bookmarks, and settings.",
+  "@swipeRightToAccessCategories": {
+    "description": "Tutorial description for swipe right gesture"
+  },
+  "tapToBookmark": "Tap to Bookmark",
+  "@tapToBookmark": {
+    "description": "Tutorial message for bookmark tap"
+  },
+  "tapOnHeadlineToBookmark": "Tap on any news headline to bookmark it for later reading.",
+  "@tapOnHeadlineToBookmark": {
+    "description": "Tutorial description for bookmark tap"
+  },
+  "likeNewsArticles": "Like News Articles",
+  "@likeNewsArticles": {
+    "description": "Tutorial message for like button"
+  },
+  "tapThumbsUpToLike": "Tap thumbs up to like articles and improve your personalized feed.",
+  "@tapThumbsUpToLike": {
+    "description": "Tutorial description for like button"
+  },
+  "dislikeNewsArticles": "Dislike News Articles",
+  "@dislikeNewsArticles": {
+    "description": "Tutorial message for dislike button"
+  },
+  "tapThumbsDownToDislike": "Tap thumbs down to dislike articles and see fewer similar stories.",
+  "@tapThumbsDownToDislike": {
+    "description": "Tutorial description for dislike button"
+  },
+  "listenToNews": "Listen to News",
+  "@listenToNews": {
+    "description": "Tutorial message for TTS speaker"
+  },
+  "tapSpeakerToListenNews": "Tap the speaker icon to hear the news article read aloud.",
+  "@tapSpeakerToListenNews": {
+    "description": "Tutorial description for TTS speaker"
+  },
+  "tapChatbotToStartConversation": "Tap the chatbot to start a conversation about this news article.",
+  "@tapChatbotToStartConversation": {
+    "description": "Tutorial description for chatbot"
+  },
+  "skip": "SKIP",
+  "@skip": {
+    "description": "Skip button text for tutorial"
+  },
+  "preferences": "Preferences",
+  "@preferences": {
+    "description": "Preferences section header"
+  },
+  "app": "App",
+  "@app": {
+    "description": "App section header"
+  },
+  "account": "Account",
+  "@account": {
+    "description": "Account section header"
+  },
+  "resultsFor": "Results for",
+  "@resultsFor": {
+    "description": "Search results header prefix"
+  },
+  "supportContactMessage": "For support, feedback, or questions about the app, reach out to our development team",
+  "@supportContactMessage": {
+    "description": "Message directing users to contact support"
+  },
+  "responseTimeMessage": "We typically respond within 1-2 business days",
+  "@responseTimeMessage": {
+    "description": "Information about response time for support"
+  },
+  "coDeveloper": "Co-Developer",
+  "@coDeveloper": {
+    "description": "Role title for co-developer"
+  },
+  "sharedNews": "Shared News",
+  "@sharedNews": {
+    "description": "Title for shared news screen"
+  },
+  "invalidDataReceived": "Invalid data received from server.",
+  "@invalidDataReceived": {
+    "description": "Error message for invalid server data"
+  },
+  "failedToLoadNewsArticle": "Failed to load news article.",
+  "@failedToLoadNewsArticle": {
+    "description": "Error message when news article fails to load"
+  },
+  "errorLoadingArticle": "An error occurred while loading the article.",
+  "@errorLoadingArticle": {
+    "description": "Generic error message for loading article"
+  },
+  "tryAgain": "Try Again",
+  "@tryAgain": {
+    "description": "Button text to retry an action"
+  },
+  "newsArticleNotFound": "News article not found",
+  "@newsArticleNotFound": {
+    "description": "Message when news article is not available"
+  },
+  "byAuthor": "By",
+  "@byAuthor": {
+    "description": "Prefix for author name"
+  },
+  "couldNotOpenArticle": "Could not open the article.",
+  "@couldNotOpenArticle": {
+    "description": "Error message when article URL cannot be opened"
+  },
+  "readFullArticle": "Read Full Article",
+  "@readFullArticle": {
+    "description": "Button text to read the complete article"
+  },
+  "selectReasonForReporting": "Please select the reason for reporting:",
+  "@selectReasonForReporting": {
+    "description": "Instruction text for report dialog"
+  },
+  "bullyingHarassment": "Bullying/Harassment",
+  "@bullyingHarassment": {
+    "description": "Report option for bullying or harassment"
+  },
+  "thankYouForReport": "Thank you for your report. We will review this content.",
+  "@thankYouForReport": {
+    "description": "Confirmation message after submitting a report"
+  },
+  "startConversationAboutArticle": "Start a conversation about the article!",
+  "@startConversationAboutArticle": {
+    "description": "Initial state message encouraging user to start chatting"
+  },
+  "chatHistoryWillAppearHere": "Your chat history will appear here.",
+  "@chatHistoryWillAppearHere": {
+    "description": "Subtitle for initial chat state"
+  },
+  "initializingChat": "Initializing chat...",
+  "@initializingChat": {
+    "description": "Loading message when chat is initializing"
+  },
+  "thinking": "Thinking...",
+  "@thinking": {
+    "description": "Typing indicator text for AI responses"
+  },
+  "askAnythingAboutArticle": "Ask me anything about this article...",
+  "@askAnythingAboutArticle": {
+    "description": "Input field hint text for chat"
+  },
+  "pleaseEnterReason": "Please enter a reason (max 50 characters)",
+  "@pleaseEnterReason": {
+    "description": "Validation message for custom report reason"
+  },
+  "maxAllowed50Chars": "Maximum allowed is 50 characters",
+  "@maxAllowed50Chars": {
+    "description": "Error message for exceeding character limit"
+  },
+  "pleaseSpecifyMax50": "Please specify (max 50 characters)",
+  "@pleaseSpecifyMax50": {
+    "description": "Hint text for custom report reason field"
+  },
+  "failedToGetResponse": "Failed to get response",
+  "@failedToGetResponse": {
+    "description": "Error message when AI service fails to respond"
+  }
+}

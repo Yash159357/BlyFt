@@ -25,3 +25,4 @@ class LoadBookmarksEvent extends BookmarkEvent {
   @override
   String toString() => 'LoadBookmarksEvent';
 }
+

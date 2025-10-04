@@ -43,3 +43,4 @@ class ThemeState extends Equatable {
   @override
   List<Object?> get props => [currentTheme, status, errorMessage];
 }
+

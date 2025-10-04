@@ -9,6 +9,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 import 'package:gap/gap.dart';
 import 'package:blyft/controller/cubit/theme/theme_cubit.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 class SharedNewsScreen extends StatefulWidget {
   final String newsId;
@@ -51,7 +52,7 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
         } catch (e) {
           Log.e('SharedNewsScreen: Unexpected response data shape', e);
           setState(() {
-            _error = 'Invalid data received from server.';
+            _error = AppLocalizations.of(context)!.invalidDataReceived;
             _isLoading = false;
           });
           return;
@@ -65,14 +66,14 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
         });
       } else {
         setState(() {
-          _error = 'Failed to load news article.';
+          _error = AppLocalizations.of(context)!.failedToLoadNewsArticle;
           _isLoading = false;
         });
       }
     } catch (e) {
       Log.e('Error loading shared news', e);
       setState(() {
-        _error = 'An error occurred while loading the article.';
+        _error = AppLocalizations.of(context)!.errorLoadingArticle;
         _isLoading = false;
       });
     }
@@ -82,7 +83,7 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shared News'),
+        title: Text(AppLocalizations.of(context)!.sharedNews),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -113,7 +114,7 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
             const Gap(24),
             ElevatedButton(
               onPressed: _loadNews,
-              child: const Text('Try Again'),
+              child: Text(AppLocalizations.of(context)!.tryAgain),
             ),
           ],
         ),
@@ -121,7 +122,7 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
     }
 
     if (_article == null) {
-      return const Center(child: Text('News article not found'));
+      return Center(child: Text(AppLocalizations.of(context)!.newsArticleNotFound));
     }
 
     return _buildNewsDetail();
@@ -239,7 +240,7 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
                 // Author
                 if (_article!.author.isNotEmpty)
                   Text(
-                    'By ${_article!.author}',
+                    '${AppLocalizations.of(context)!.byAuthor} ${_article!.author}',
                     style: TextStyle(
                       color: Colors.white.withAlpha((0.6 * 255).toInt()),
                       fontSize: 13,
@@ -265,7 +266,7 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
                           if (mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Could not open the article.'),
+                                content: Text(AppLocalizations.of(context)!.couldNotOpenArticle),
                               ),
                             );
                           }
@@ -273,7 +274,7 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
                       }
                     },
                     icon: const Icon(Icons.open_in_new),
-                    label: const Text('Read Full Article'),
+                    label: Text(AppLocalizations.of(context)!.readFullArticle),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       backgroundColor: currentTheme.primaryColor,
@@ -289,3 +290,4 @@ class _SharedNewsScreenState extends State<SharedNewsScreen> {
     );
   }
 }
+

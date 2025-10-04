@@ -18,6 +18,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:blyft/controller/services/tutorial_service.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 import '../common_widgets/end_of_news.dart';
 import '../common_widgets/tutorial_overlay_widget.dart';
 import '../../controller/services/backend_service.dart';
@@ -117,8 +118,23 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   }
 
   String _getCategoryName(NewsCategory category) {
-    final String name = category.toString().split('.').last;
-    return name[0].toUpperCase() + name.substring(1);
+    final l10n = AppLocalizations.of(context)!;
+    switch (category) {
+      case NewsCategory.general:
+        return l10n.general;
+      case NewsCategory.business:
+        return l10n.business;
+      case NewsCategory.entertainment:
+        return l10n.entertainment;
+      case NewsCategory.health:
+        return l10n.health;
+      case NewsCategory.sports:
+        return l10n.sports;
+      case NewsCategory.technology:
+        return l10n.technology;
+      case NewsCategory.politics:
+        return l10n.politics;
+    }
   }
 
   @override
@@ -152,9 +168,9 @@ class _HomeScreenContentState extends State<_HomeScreenContent> {
   Widget _buildNewsViewPager(BuildContext context, NewsLoaded state) {
     final articles = state.articles;
     if (articles.isEmpty) {
-      return const Center(
+      return  Center(
         child: Text(
-          "No articles found.",
+          AppLocalizations.of(context)!.noArticlesFound,
           style: TextStyle(color: Colors.white),
         ),
       );
@@ -446,7 +462,7 @@ class _NewsCardState extends State<_NewsCard> {
 
       if (response.success && response.data != null) {
         final shareId = response.data['newsId'];
-        final shareUrl = 'brevity://share?id=$shareId';
+        final shareUrl = 'blyft://share?id=$shareId';
         Log.d('Share URL: $shareUrl');
 
         await Share.share(
@@ -912,3 +928,4 @@ Future<void> _launchUrl(String url) async {
     Log.i('HOME.DART: Successfully launched URL: $url');
   }
 }
+

@@ -60,3 +60,4 @@ class BookmarkBloc extends Bloc<BookmarkEvent, BookmarkState> {
     Log.d("BOOKMARK_BLOC:$message");
   }
 }
+

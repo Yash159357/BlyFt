@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:blyft/l10n/app_localizations.dart';
 
 import '../../controller/services/OAuth_service.dart';
 import '../../controller/services/auth_service.dart';
@@ -140,7 +141,9 @@ class _LoginScreenState extends State<LoginScreen>
         _emailError =
             email.isEmpty
                 ? null
-                : (isValid ? null : 'Please enter a valid email');
+                : (isValid
+                    ? null
+                    : AppLocalizations.of(context)!.pleaseEnterValidEmail);
       });
     }
   }
@@ -264,8 +267,8 @@ class _LoginScreenState extends State<LoginScreen>
     return Column(
       children: [
         AnimatedHeader(
-          title: 'Welcome Back',
-          subtitle: 'Sign in to your Brevity account',
+          title: AppLocalizations.of(context)!.welcomeBack,
+          subtitle: AppLocalizations.of(context)!.signInToAccount,
           logoAssetPath: 'assets/logos/Brevity_white.png',
           screenSize: size,
           isLandscape: false,
@@ -437,20 +440,24 @@ class _LoginScreenState extends State<LoginScreen>
 
                       EnhancedTextField(
                         controller: _emailController,
-                        label: 'Email Address',
-                        hintText: 'Enter your email',
+                        label: AppLocalizations.of(context)!.emailAddress,
+                        hintText: AppLocalizations.of(context)!.enterYourEmail,
                         icon: Icons.mail_outline_rounded,
                         keyboardType: TextInputType.emailAddress,
                         isValid: _emailValid,
                         errorText: _emailError,
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return 'Email is required';
+                            return AppLocalizations.of(
+                              context,
+                            )!.emailIsRequired;
                           }
                           if (!RegExp(
                             r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                           ).hasMatch(v)) {
-                            return 'Please enter a valid email address';
+                            return AppLocalizations.of(
+                              context,
+                            )!.pleaseEnterValidEmail;
                           }
                           return null;
                         },
@@ -460,8 +467,9 @@ class _LoginScreenState extends State<LoginScreen>
 
                       EnhancedTextField(
                         controller: _passwordController,
-                        label: 'Password',
-                        hintText: 'Enter your password',
+                        label: AppLocalizations.of(context)!.password,
+                        hintText:
+                            AppLocalizations.of(context)!.enterYourPassword,
                         icon: Icons.lock_outline_rounded,
                         obscureText: _obscurePassword,
                         isValid: _passwordValid,
@@ -488,7 +496,9 @@ class _LoginScreenState extends State<LoginScreen>
                         ),
                         validator: (v) {
                           if (v == null || v.isEmpty) {
-                            return 'Password is required';
+                            return AppLocalizations.of(
+                              context,
+                            )!.passwordIsRequired;
                           }
                           if (v.length < 6) {
                             return 'Password must be at least 6 characters';
@@ -532,7 +542,7 @@ class _LoginScreenState extends State<LoginScreen>
                           child: EnhancedButton(
                             onPressed: _canLogin ? _handleLogin : null,
                             isLoading: _isLoading,
-                            text: 'LOGIN',
+                            text: AppLocalizations.of(context)!.loginButton,
                             enabled: _canLogin,
                           ),
                         ),
@@ -560,7 +570,7 @@ class _LoginScreenState extends State<LoginScreen>
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
-                              'or continue with',
+                              AppLocalizations.of(context)!.orContinueWith,
                               style: TextStyle(
                                 color: mutedText,
                                 fontSize: 12,
@@ -613,12 +623,13 @@ class _LoginScreenState extends State<LoginScreen>
                                   );
                                   // Error handling is done in OAuthService
                                 } finally {
-                                  if (mounted)
+                                  if (mounted) {
                                     setState(() => _isLoading = false);
+                                  }
                                 }
                               },
                               icon: Icons.g_mobiledata_rounded,
-                              text: 'Google',
+                              text: AppLocalizations.of(context)!.google,
                               iconColor: const Color(0xFFDB4437),
                               imagePath: 'assets/logos/google.png',
                               isLoading: _isLoading,
@@ -648,12 +659,13 @@ class _LoginScreenState extends State<LoginScreen>
                                   );
                                   // Error handling is done in OAuthService
                                 } finally {
-                                  if (mounted)
+                                  if (mounted) {
                                     setState(() => _isLoading = false);
+                                  }
                                 }
                               },
                               icon: Icons.apple_rounded,
-                              text: 'Apple',
+                              text: AppLocalizations.of(context)!.apple,
                               iconColor: Colors.white,
                               isLoading: _isLoading,
                             ),
@@ -680,7 +692,10 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                               children: [
                                 TextSpan(
-                                  text: 'Create account',
+                                  text:
+                                      AppLocalizations.of(
+                                        context,
+                                      )!.createAccount2,
                                   style: TextStyle(
                                     color: primaryB,
                                     fontWeight: FontWeight.w700,
@@ -1037,7 +1052,11 @@ class _EnhancedSocialButtonState extends State<EnhancedSocialButton>
                                     );
                                   },
                                 )
-                                : Icon(widget.icon, color: widget.iconColor, size: 24),
+                                : Icon(
+                                  widget.icon,
+                                  color: widget.iconColor,
+                                  size: 24,
+                                ),
 
                             const SizedBox(width: 12),
                             Text(
