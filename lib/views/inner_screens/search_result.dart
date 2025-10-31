@@ -31,6 +31,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen>
   @override
   void initState() {
     super.initState();
+    print('SEARCH_RESULT: Screen initialized');
+    print('SEARCH_RESULT: Navigated to SearchResultsScreen with query: ${widget.query}');
     _searchResults = _newsService.searchNews(widget.query);
 
     _animationController = AnimationController(
