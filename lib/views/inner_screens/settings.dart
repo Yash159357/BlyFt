@@ -231,6 +231,8 @@ class _SettingsScreenState extends State<SettingsScreen>
   @override
   void initState() {
     super.initState();
+    print('SETTINGS: Screen initialized');
+    print('SETTINGS: Navigated to SettingsScreen');
 
     context.read<UserProfileCubit>().loadUserProfile();
 
