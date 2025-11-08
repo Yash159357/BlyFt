@@ -111,7 +111,7 @@
 <details>
 <summary>📱 View App Screenshots</summary>
 <p align="center">
-	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/BlyFt.png" width="22%"/>
+	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Brevity.png" width="22%"/>
 	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Login.png" alt="Profile Screen" width="22%"/>
 	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Theme.png" alt="Profile Screen" width="22%"/>
 	<img src="https://raw.githubusercontent.com/Yash159357/NewsAI/main/assets/logos/hidden_images/Home.png" alt="Transactions Screen" width="22%"/>
