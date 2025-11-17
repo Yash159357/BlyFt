@@ -32,6 +32,8 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   void initState() {
     super.initState();
+    print('PROFILE: Screen initialized');
+    print('PROFILE: Navigated to ProfileScreen');
 
     _particleAnimationController = AnimationController(
       vsync: this,
